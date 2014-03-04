@@ -5,9 +5,14 @@ use ieee.numeric_std.all;
 use work.wr_altera_pkg.all;
 use work.ez_usb_pkg.all;
 use work.wishbone_pkg.all;
+use work.pexaria_PKG.all;
 
 ENTITY pexaria IS 
-	PORT ( clk      : IN STD_LOGIC; -- BuTis 200MHz input through extension port 9 pin
+	PORT (
+	-----------------------------------------------------------------------
+    -- my count error
+	-----------------------------------------------------------------------
+			 clk      : IN STD_LOGIC; -- BuTis 200MHz input through extension port 9 pin
 --	       osc      : IN  STD_LOGIC; -- local 125MHz quartz
 			 io1      : OUT STD_LOGIC; --output 10MHz
 			 io2      : IN  STD_LOGIC; --input 100KHz
@@ -26,7 +31,8 @@ ENTITY pexaria IS
 			 LED6     : OUT STD_LOGIC; --conrol LED4
 			 LED7     : OUT STD_LOGIC; --conrol LED4
 			 
-			 button   : IN STD_LOGIC; --reset the count1 to zero and turn off the LED1
+			 button   : IN STD_LOGIC; --reset the count1 to zero and turn off the LED1\
+
 	 -----------------------------------------------------------------------
     -- usb
     -----------------------------------------------------------------------
@@ -51,11 +57,11 @@ ENTITY pexaria IS
 END pexaria ; 
 
 ARCHITECTURE LogicFunction OF pexaria IS
-   signal foo : std_logic;--10MHz
-	signal count : unsigned(6 DOWNTO 0);
-	signal counterror : unsigned(6 DOWNTO 0); -- count for the mis synchronization 
-	signal last :std_LOGIC;
-	signal lastb :std_LOGIC;
+--   signal foo : std_logic;--10MHz
+--	signal count : unsigned(6 DOWNTO 0);
+--	signal counterror : unsigned(6 DOWNTO 0); -- count for the mis synchronization 
+--	signal last :std_LOGIC;
+--	signal lastb :std_LOGIC;
    signal clk_200_local : std_logic;
 	
 	signal uart_usb : std_logic; -- from usb
@@ -76,18 +82,8 @@ ARCHITECTURE LogicFunction OF pexaria IS
 	
 	signal wb_master_i		: t_wishbone_master_in;
 	signal wb_master_o 		: t_wishbone_master_out;
---   component pll is
---		port (
---			refclk   : in  std_logic := '0'; --  refclk.clk
---			rst      : in  std_logic := '0'; --   reset.reset
---			outclk_0 : out std_logic         -- outclk0.clk
---		);
---   end component;
 	
 BEGIN
---   apll : pll port map(
---	  refclk => osc,
---	  outclk_0 => clk_200_local);
 	
 	TTLEN1 <= '0'; -- enable output
 	TTLEN2 <= '1'; -- disable output (input)
@@ -105,7 +101,30 @@ BEGIN
 	wb_master_i.dat (31 downto 7) <= (others => '0');
 	wb_master_i.dat (6 downto 0) <= std_logic_vector(counterror(6 downto 0));
 	
-	
+	   pexaria_e :pexaria port map(
+			 clk_i      => clk;
+			 io1_o      => io1;
+			 io2_i      => io2;
+			 io3_o      => io3;
+			 TTLEN1_o   => TTLEN1;                                                 
+			 TTLEN2_o   => TTLEN2; 
+			 TTLEN3_o   => TTLEN3; 
+			 TTLTERM1_o => TTLTERM1;
+			 TTLTERM2_o => TTLTERM2;
+			 TTLTERM3_o => TTLTERM3;
+			 LED1_o     => LED1;
+			 LED2_o     => LED2;
+			 LED3_o     => LED3;
+			 LED4_o     => LED4;
+			 LED5_o     => LED5;
+			 LED6_o     => LED6;
+			 LED7_o     => LED7;
+			 button_o   => button;
+			 
+			 -- Wishbone interface
+	   	slave_o     => wb_master_i;
+		   slave_i     => wb_master_o);		
+			
 	 usb_readyn_io <= 'Z';
     usb_fd_io <= s_usb_fd_o when s_usb_fd_oen='1' else (others => 'Z');
     usb : ez_usb
