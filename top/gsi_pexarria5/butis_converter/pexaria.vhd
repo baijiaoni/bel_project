@@ -5,7 +5,8 @@ use ieee.numeric_std.all;
 use work.wr_altera_pkg.all;
 use work.ez_usb_pkg.all;
 use work.wishbone_pkg.all;
-use work.pexaria_PKG.all;
+use work.pexaria_pkg.all;
+use work.build_id_pkg.all;
 
 ENTITY pexaria IS 
 	PORT (
@@ -50,19 +51,19 @@ ENTITY pexaria IS
     usb_pktendn_o          : out   std_logic := 'Z';
     usb_fd_io              : inout std_logic_vector(7 downto 0);
 	 
-	 --clokc
+	 -----------------------------------------------------------------------
+    -- clock
+    -----------------------------------------------------------------------
 	 core_clk_125m_local_i  : in    std_logic);
  
 			 		 
 END pexaria ; 
 
 ARCHITECTURE LogicFunction OF pexaria IS
---   signal foo : std_logic;--10MHz
---	signal count : unsigned(6 DOWNTO 0);
---	signal counterror : unsigned(6 DOWNTO 0); -- count for the mis synchronization 
---	signal last :std_LOGIC;
---	signal lastb :std_LOGIC;
+
    signal clk_200_local : std_logic;
+	signal countpps :unsigned (32 DOWNTO 0);
+	signal pps : std_logic;
 	
 	signal uart_usb : std_logic; -- from usb
    signal uart_wrc : std_logic; -- from wrc
@@ -80,11 +81,28 @@ ARCHITECTURE LogicFunction OF pexaria IS
 	signal clk_sys          : std_logic;
 	signal rstn_sys         : std_logic;
 	
-	signal wb_master_i		: t_wishbone_master_in;
-	signal wb_master_o 		: t_wishbone_master_out;
+	constant c_top_masters    : natural := 1;
+	constant c_top_slaves     : natural := 2; --required slave
+	signal top_cbar_slave_i  : t_wishbone_slave_in_array (c_top_masters-1 downto 0);
+	signal top_cbar_slave_o  : t_wishbone_slave_out_array(c_top_masters-1 downto 0);
+	signal top_cbar_master_i : t_wishbone_master_in_array(c_top_slaves-1 downto 0);
+   signal top_cbar_master_o : t_wishbone_master_out_array(c_top_slaves-1 downto 0);  
+	----------------------------------------------------------------------------------
+   -- GSI Top Crossbar --------------------------------------------------------------
+   ----------------------------------------------------------------------------------
+	constant c_topm_usb       : natural := 0;
+	constant c_tops_build_id  : natural := 0;
+	constant c_tops_butis_conv: natural := 1;
+	
+	constant c_top_layout_req : t_sdb_record_array(c_top_slaves-1 downto 0) :=
+   (c_tops_build_id  => f_sdb_auto_device(c_build_id_sdb, true),
+	c_tops_butis_conv  => f_sdb_auto_device(c_butis_conv_sdb, true));
+	constant c_top_layout     : t_sdb_record_array(c_top_slaves-1 downto 0) 
+                                                  := f_sdb_auto_layout(c_top_layout_req);
+	constant c_top_sdb_address: t_wishbone_address := f_sdb_auto_sdb(c_top_layout_req);
 	
 BEGIN
-	
+
 	TTLEN1 <= '0'; -- enable output
 	TTLEN2 <= '1'; -- disable output (input)
 	TTLEN3 <= '0'; -- enable output
@@ -92,49 +110,35 @@ BEGIN
 	TTLTERM1 <= '0'; -- disconnect 50Ohm termination
 	TTLTERM2 <= '1'; -- terminate input with 50Ohm
 	TTLTERM3 <= '0'; -- disconnect 50Ohm termination
+	---------------------------------------------------
+	--my program component
+	---------------------------------------------------
 	
-	wb_master_i.ack <= wb_master_o.stb and wb_master_o.cyc;
-	wb_master_i.err <= '0';
-	wb_master_i.rty <= '0';
-	wb_master_i.stall <= '0';
-	wb_master_i.int <= '0';
-	wb_master_i.dat (31 downto 7) <= (others => '0');
-	wb_master_i.dat (6 downto 0) <= std_logic_vector(counterror(6 downto 0));
-	
-	   pexaria_e :pexaria port map(
-			 clk_i      => clk;
-			 io1_o      => io1;
-			 io2_i      => io2;
-			 io3_o      => io3;
-			 TTLEN1_o   => TTLEN1;                                                 
-			 TTLEN2_o   => TTLEN2; 
-			 TTLEN3_o   => TTLEN3; 
-			 TTLTERM1_o => TTLTERM1;
-			 TTLTERM2_o => TTLTERM2;
-			 TTLTERM3_o => TTLTERM3;
-			 LED1_o     => LED1;
-			 LED2_o     => LED2;
-			 LED3_o     => LED3;
-			 LED4_o     => LED4;
-			 LED5_o     => LED5;
-			 LED6_o     => LED6;
-			 LED7_o     => LED7;
-			 button_o   => button;
+	   pexaria1 :pexaria_e port map(
+			 clk_i      => clk,
+			 clk_sys_i  => clk_sys,
+			 rst_n_i    => rstn_sys,
+			 io1_o      => io1,
+			 io2_i      => io2,
+			 button_i   => button,
 			 
 			 -- Wishbone interface
-	   	slave_o     => wb_master_i;
-		   slave_i     => wb_master_o);		
+	   	slave_o     => top_cbar_master_i(c_tops_butis_conv),
+		   slave_i     => top_cbar_master_o(c_tops_butis_conv));		
 			
+	---------------------------------------------------
+	--USB component
+	---------------------------------------------------		
 	 usb_readyn_io <= 'Z';
     usb_fd_io <= s_usb_fd_o when s_usb_fd_oen='1' else (others => 'Z');
     usb : ez_usb
       generic map(
-        g_sdb_address => x"00000000")
+        g_sdb_address => c_top_sdb_address)
       port map(
         clk_sys_i => clk_sys,
         rstn_i    => rstn_sys,
-        master_i  => wb_master_i,
-        master_o  => wb_master_o,
+        master_i  => top_cbar_slave_o(c_topm_usb),
+        master_o  => top_cbar_slave_i(c_topm_usb),
         uart_o    => uart_usb,
         uart_i    => uart_wrc,
         rstn_o    => usb_rstn_o,
@@ -165,55 +169,58 @@ BEGIN
 		clk_sys <= clk_sys0;
 		rstn_sys <= '1';
 		
+		----------------------------------------------------------------------------------
+		-- Wishbone crossbars ------------------------------------------------------------
+		----------------------------------------------------------------------------------
+  
+		top_bar : xwb_sdb_crossbar
+		 generic map(
+			g_num_masters => c_top_masters,
+			g_num_slaves  => c_top_slaves,
+			g_registered  => true,
+			g_wraparound  => true,
+			g_layout      => c_top_layout,
+			g_sdb_addr    => c_top_sdb_address)
+		 port map(
+			clk_sys_i     => clk_sys,
+			rst_n_i       => rstn_sys,
+			slave_i       => top_cbar_slave_i,
+			slave_o       => top_cbar_slave_o,
+			master_i      => top_cbar_master_i,
+			master_o      => top_cbar_master_o);
+			
+		------------------------------------------------------------------------------------------
+	  -- Wishbone slaves build id---------------------------------------------------------------
+	  ------------------------------------------------------------------------------------------
+	  
+	  id : build_id
+		 port map(
+			clk_i   => clk_sys,
+			rst_n_i => rstn_sys,
+			slave_i => top_cbar_master_o(c_tops_build_id),
+			slave_o => top_cbar_master_i(c_tops_build_id));
+			
+			clk_sys <= clk_sys0;
+			rstn_sys <= '1';
 	
-	process(clk) is 
+	process(clk_sys3) is
 		BEGIN
-		if rising_edge(clk) then 
-			if (lastb = '1' and button = '0') then
-				counterror <= "0000000";
-			end if;	
-			if (last = '1' and io2 = '0') then
-				foo <= '0'; 
-				if (count /= 19) then --detect the dis synchronization
-					counterror <= counterror + 1;
-				end if;
-				count <= (others => '0');
-			else
-				if (count = 9) then --foo 100KHz positive pulse
-					count <= count + 1;
-					foo <= '1';
-				else
-					if (count = 19) then --foo 100KHz negative pulse
-					count <= (others => '0');
-					foo <= '0'; 
-					else 
-					count <= count + 1;
-					end if;
-				end if;
-			end if;
-		   last <= io2;
-			lastb <= button;
-		end if;
-
+		if rising_edge(clk_sys3) then
+			If (countpps = 5_000_000) Then	
+					countpps <= (others => '0');
+					pps <= not pps;
+			ELSE
+					countpps <= countpps +1;
+	      end if;
+	   end if;
 	end process;
-   io1 <= foo;
-	io3 <= io2;
-	
-	LED2 <= 'Z';
+	LED7 <= 'Z';
 	LED3 <= 'Z';
 	LED4 <= 'Z';
 	LED5 <= 'Z';
 	LED6 <= 'Z';
-	LED7 <= 'Z';
+	LED1 <= 'Z';
 
-	LED1 <= 'Z' when counterror = 0 else '0';
-	
---	LED2 <= '0' when counterror(1)='1' else 'Z';
---	LED3 <= '0' when counterror(2)='1' else 'Z';
---	LED4 <= '0' when counterror(3)='1' else 'Z';
---	LED5 <= '0' when counterror(4)='1' else 'Z';
---	LED6 <= '0' when counterror(5)='1' else 'Z';
---	LED7 <= '0' when counterror(6)='1' else 'Z';
-	
-
+	LED2 <= 'Z' when top_cbar_master_i(c_tops_butis_conv).dat = x"00000000" else '0';
+	io3 <= pps;
 END LogicFunction ;
