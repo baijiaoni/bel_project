@@ -13,7 +13,7 @@ ENTITY pexaria_e IS
 			   io1_o       : OUT STD_LOGIC; --output 10MHz
 			   io2_i       : IN  STD_LOGIC; --input 100KHz 
 			   button_i    : IN  STD_LOGIC ; --reset the count1 to zero and turn off the LED1
-			 
+			   LED2_o      : out std_LOGIC;
             -- Wishbone interface
             slave_o     : out t_wishbone_slave_out;
             slave_i     : in  t_wishbone_slave_in
@@ -66,8 +66,11 @@ BEGIN
             v_en  := slave_i.cyc and slave_i.stb and not r_stall;
             v_adr := to_integer(unsigned(slave_i.adr(7 downto 0)));
             v_we  := slave_i.we;
+				r_echo   <= x"deadbeef";
             r_dato <= (others => '0');
             r_clr  <= "0";
+				r_ack  <= '0';
+				r_err  <= '0';
 
             if v_en = '1' then
                r_ack <= '1';
@@ -92,7 +95,7 @@ BEGIN
 		counter : process(clk_i) is 
 		BEGIN
 		if rising_edge(clk_i) then 
-			if ((lastb = '1' and button_i = '0') or r_clr(0) = '1') then
+			if ((lastb = '1' and button_i = '0') or r_clr = "1") then
 				counterror <= "0000000";
 			end if;	
 			if (last = '1' and io2_i = '0') then
@@ -120,7 +123,7 @@ BEGIN
 
 	end process;
    io1_o <= foo;
-	
+	LED2_o <= 'Z' when counterror= x"00000000" else '0';
 	--LED1_o <= 'Z' when counterror = 0 else '0';
 	
 

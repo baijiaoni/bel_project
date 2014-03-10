@@ -32,6 +32,7 @@ package pexaria_pkg is
 			 io1_o      : OUT STD_LOGIC; --output 10MHz
 			 io2_i      : IN  STD_LOGIC; --input 100KHz
 			 button_i   : IN STD_LOGIC; --reset the count1 to zero and turn off the LED1
+			 LED2_o      : out std_LOGIC;
 			 -- Wishbone interface
 	   	slave_o  : out  t_wishbone_master_in;
 		   slave_i  : in   t_wishbone_master_out);

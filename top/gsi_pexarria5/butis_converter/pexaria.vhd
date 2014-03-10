@@ -121,7 +121,7 @@ BEGIN
 			 io1_o      => io1,
 			 io2_i      => io2,
 			 button_i   => button,
-			 
+			 LED2_o     => LED2,
 			 -- Wishbone interface
 	   	slave_o     => top_cbar_master_i(c_tops_butis_conv),
 		   slave_i     => top_cbar_master_o(c_tops_butis_conv));		
@@ -221,6 +221,5 @@ BEGIN
 	LED6 <= 'Z';
 	LED1 <= 'Z';
 
-	LED2 <= 'Z' when top_cbar_master_i(c_tops_butis_conv).dat = x"00000000" else '0';
 	io3 <= pps;
 END LogicFunction ;
