@@ -726,5 +726,6 @@ set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to usb_fd_io
 set_instance_assignment -name FAST_INPUT_REGISTER ON -to usb_fd_io
 set_instance_assignment -name FAST_OUTPUT_ENABLE_REGISTER ON -to usb_fd_io
 set_global_assignment -name CDF_FILE output_files/Chain5.cdf
+set_global_assignment -name CDF_FILE output_files/Chain7.cdf
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
