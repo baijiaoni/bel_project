@@ -45,6 +45,7 @@ create_clock -name {clk} -period 5.000 [get_ports {clk}]
 # Create Generated Clock
 #**************************************************************
 
+derive_pll_clocks -create_base_clocks
 
 
 #**************************************************************
@@ -75,7 +76,9 @@ derive_clock_uncertainty
 # Set Clock Groups
 #**************************************************************
 
-
+set_clock_groups -asynchronous               \
+ -group { core_clk_125m_local_i sys_inst|* } \
+ -group { clk }
 
 #**************************************************************
 # Set False Path
