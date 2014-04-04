@@ -29,6 +29,7 @@ modules = {
     "monster",
     "heap",
     "butis_t0",
+    "butis",
     "power_test",
   ]
 }
