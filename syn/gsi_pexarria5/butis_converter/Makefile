@@ -1,4 +1,4 @@
-TARGET		= butis_converter
+TARGET		= pexaria
 DEVICE		= 5AGXMA3D4
 FLASH		= EPCQ256
 RAM_SIZE	= 131072
