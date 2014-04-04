@@ -133,9 +133,9 @@ BEGIN
 			slave_i    => top_cbar_master_o(c_tops_butis_conv));		
 	
 	-- 
-	io1 <= not s_io1_n;
+	io1 <= not s_io1_n; --io as output don't need change
 	io3 <= not s_io3_n;
-	s_io2_n <= not io2;
+	s_io2_n <= not io2; --io as input need change
 	
 	---------------------------------------------------
 	--USB component
@@ -180,7 +180,18 @@ BEGIN
 			locked   => sys_locked);
 		
 	clk_sys <= clk_sys0;
-	rstn_sys <= '1';
+	
+	reset : altera_reset
+	  generic map(
+	    g_plls   => 1,
+	    g_clocks => 1)
+	  port map(
+	    clk_free_i    => core_clk_125m_local_i,
+		 rstn_i        => '1',
+		 pll_lock_i(0) => sys_locked,
+		 pll_arst_o    => pll_rst,
+		 clocks_i(0)   => clk_sys,
+		 rstn_o(0)     => rstn_sys);
 		
 	----------------------------------------------------------------------------------
 	-- Wishbone crossbars ------------------------------------------------------------
