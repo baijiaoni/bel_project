@@ -37,6 +37,7 @@ ARCHITECTURE LogicFunction OF pexaria_e IS
    signal r_echo       : t_wishbone_data;
    signal r_clr        : std_logic_vector(0 downto 0);   
 	signal r_button     : std_logic_vector(2 downto 0);
+	signal clr_i        : std_logic_vector(2 downto 0);
 
    constant c_CNT    : natural   := 0;         -- Read Counterror, ro  0x00 
    constant c_CLR    : natural   := c_CNT +4;  -- Clear counter, wo 0x04 if set to '1', turn light off and make counterror = 0
@@ -66,7 +67,6 @@ BEGIN
 			v_adr := to_integer(unsigned(slave_i.adr(7 downto 2))) * 4;
 			v_we  := slave_i.we;
 			
-			r_echo   <= x"deadbeef";
 			r_dato <= (others => '0');
 			r_clr  <= "0";
 			r_ack  <= '0';
@@ -123,8 +123,9 @@ BEGIN
 			end if;
 
 			-- Count the synchronization errors
-			r_button <= button_i & r_button(2 downto 1);
-			if (r_button(0) = '0' or r_clr = "1") then
+			r_button <= button_i & r_button(2 downto 1);-- use register to delay button 
+			clr_i    <= r_clr & clr_i (2 downto 1);
+			if (r_button(0) = '0' or clr_i(0) = '1') then
 				counterror <= "0000000";
 			elsif (s_100k_rising and r_count_10m /= 19) then
 				counterror <= counterror + 1;
