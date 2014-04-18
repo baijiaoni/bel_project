@@ -1,0 +1,444 @@
+-*- Text -*-
+This is the file .../info/dir, which contains the topmost node of
+the Info hierarchy.  The first time you invoke Info you start off
+looking at that node, which is (dir)Top.
+
+File: dir	Node: Top	This is the top of the INFO tree
+  This (the Directory node) gives a menu of major topics.  Typing "d"
+  returns here, "q" exits, "?" lists all INFO commands, "h"  gives a
+  primer for first-timers, "mTexinfo<Return>" visits Texinfo topic,
+  etc.
+  Or click mouse button 2 on a menu item or cross reference to select
+  it.
+  --- PLEASE ADD DOCUMENTATION TO THIS TREE. (See INFO topic first.) ---
+
+In Debian Linux, Info `dir' entries are added with the command
+`install-info'.  Please refer to install-info(8) for usage details.
+
+* Menu: The list of major topics begins on the next line.
+
+Development
+* Bfd: (bfd).				The Binary File Descriptor library.
+* Binutils: (binutils). 		The GNU binary utilities.
+* ar: (binutils)ar.			Create, modify, and extract from
+					archives
+* Check: (check).			Introduction
+* Flex: (flex). 			A fast scanner generator
+* Gdb: (gdb).				The GNU debugger.
+* Gdb-Internals: (gdbint).		The GNU debugger's internals.
+* Gperf: (gperf).			Perfect Hash Function Generator.
+* gprof: (gprof).			Profiling your program's execution
+* History: (history).			GNU History Library
+* Ld: (ld).				The GNU linker.
+* nm: (binutils)nm.			List symbols from object files
+* objcopy: (binutils)objcopy.		Copy and translate object files
+* objdump: (binutils)objdump.		Display information from object files
+* ranlib: (binutils)ranlib.		Generate index to archive contents
+* readelf: (binutils)readelf.		Display the contents of ELF format
+					files.
+* Readline: (readline). 		GNU Readline Library
+* size: (binutils)size. 		List section sizes and total size
+* Stabs: (stabs).			The "stabs" debugging information
+					format.
+* strings: (binutils)strings.		List printable strings from files
+* strip: (binutils)strip.		Discard symbols
+* c++filt: (binutils)c++filt.		Filter to demangle encoded C++ symbols
+* cxxfilt: (binutils)c++filt.		MS-DOS name for c++filt
+* addr2line: (binutils)addr2line.	Convert addresses to file and line
+* nlmconv: (binutils)nlmconv.		Converts object code into an NLM
+* windres: (binutils)windres.		Manipulate Windows resources
+* windmc: (binutils)windmc.		Generator for Windows message
+					resources
+* dlltool: (binutils)dlltool.		Create files needed to build and use
+					DLLs
+* As: (as).				The GNU assembler.
+* Gas: (as).				The GNU assembler.
+* Buildbot: (buildbot). 		A system to automate the compile/test
+					cycle
+* Com_err: (com_err).			A Common Error Description Library for
+					UNIX.
+* CVS: (cvs).				Concurrent Versions System
+* CVS client/server: (cvsclient).	Describes the client/server protocol
+					used by CVS.
+* fastjar: (fastjar).			GNU jar utilities
+* gcc-2.95: (gcc-2.95). 		The GNU Compiler Collection (Version
+					2.95.x).
+* Gdbm: (gdbm). 			The GNU Database Routines.
+* iostream-2.95: (iostream-2.95).	The C++ input/output facility (GCC
+					2.95.x).
+* Ipc: (ipc).				System V interprocess communication
+					facilities
+* M4: (m4).				The GNU m4 macro preprocessor.
+* gettext: (gettext).			GNU gettext utilities.
+* autopoint: (gettext)autopoint Invocation.
+					Copy gettext infrastructure.
+* envsubst: (gettext)envsubst Invocation.
+					Expand environment variables.
+* gettextize: (gettext)gettextize Invocation.
+					Prepare a package for gettext.
+* Make: (make). 			The GNU make utility.
+* msgattrib: (gettext)msgattrib Invocation.
+					Select part of a PO file.
+* msgcat: (gettext)msgcat Invocation.	Combine several PO files.
+* msgcmp: (gettext)msgcmp Invocation.	Compare a PO file and template.
+* msgcomm: (gettext)msgcomm Invocation. Match two PO files.
+* msgconv: (gettext)msgconv Invocation. Convert PO file to encoding.
+* msgen: (gettext)msgen Invocation.	Create an English PO file.
+* msgexec: (gettext)msgexec Invocation. Process a PO file.
+* msgfilter: (gettext)msgfilter Invocation.
+					Pipe a PO file through a filter.
+* msgfmt: (gettext)msgfmt Invocation.	Make MO files out of PO files.
+* msggrep: (gettext)msggrep Invocation. Select part of a PO file.
+* msginit: (gettext)msginit Invocation. Create a fresh PO file.
+* msgmerge: (gettext)msgmerge Invocation.
+					Update a PO file from template.
+* msgunfmt: (gettext)msgunfmt Invocation.
+					Uncompile MO file into PO file.
+* msguniq: (gettext)msguniq Invocation. Unify duplicates for PO file.
+* ngettext: (gettext)ngettext Invocation.
+					Translate a message with plural.
+* OpenOCD: (openocd).			Open On-Chip Debugger.
+* xgettext: (gettext)xgettext Invocation.
+					Extract strings into a PO file.
+* ISO639: (gettext)Language Codes.	ISO 639 language codes.
+* ISO3166: (gettext)Country Codes.	ISO 3166 country codes.
+
+Administration commands
+* Accounting: (accounting).		The GNU process accounting utilities
+
+The GIMP
+* Gdk: (gdk).				The GIMP Drawing Kit.
+* Glib: (glib). 			The GIMP Library.
+
+Basics
+* Coreutils: (coreutils).		Core GNU (file, text, shell)
+					utilities.
+* Common options: (coreutils)Common options.
+					Common options.
+* File permissions: (coreutils)File permissions.
+					Access modes.
+* Date input formats: (coreutils)Date input formats.
+* Finding files: (find).		Operating on files matching certain
+					criteria.
+
+Libraries
+* AA-lib: (aalib).			An ASCII-art graphics library
+* Libxmi: (libxmi).			The GNU libxmi 2-D rasterization
+					library.
+
+Utilities
+* Enscript: (enscript). 		GNU Enscript
+* gnuit: (gnuit).			GNU Interactive Tools
+* Gzip: (gzip). 			The gzip command for compressing
+					files.
+
+Programming & development tools.
+* DDD: (ddd).				The Data Display Debugger.
+* DDD-Themes: (ddd-themes).		Writing DDD Themes.
+* DejaGnu: (dejagnu).			The GNU testing framework.
+* Indent: (indent).			A C language source code beautifier
+* NASM: (nasm). 			The Netwide Assembler for x86.
+
+Miscellaneous
+* BHL: (bhl.info).			BHL mode: Plain text - HTML - LaTeX -
+					...
+* Rluserman: (rluserman).		GNU Readline Library API
+
+GNU Libraries
+* GPGME: (gpgme).			Adding support for cryptography to
+					your program.
+* libidn: (libidn).			Internationalized string processing
+					library.
+
+Emacs
+* Ada mode: (emacs-21/ada-mode).	The GNU Emacs mode for editing Ada.
+* Ada mode: (emacs-22/ada-mode).	Emacs mode for editing and compiling
+					Ada code.
+* Autotype: (emacs-21/autotype).	Convenient features for text that you
+					enter frequently in Emacs.
+* Autotype: (emacs-22/autotype).	Convenient features for text that you
+					enter frequently in Emacs.
+* Calc: (emacs-22/calc).		Advanced desk calculator and
+					mathematical tool.
+* CC Mode: (emacs-21/ccmode).		Emacs mode for editing C, C++,
+					Objective-C, Java, Pike, and IDL code.
+* CC Mode: (emacs-22/ccmode).		Emacs mode for editing C, C++,
+					Objective-C, Java, Pike, AWK, and
+					CORBA IDL code.
+* CL: (emacs-21/cl).			Partial Common Lisp support for Emacs
+					Lisp.
+* CL: (emacs-22/cl).			Partial Common Lisp support for Emacs
+					Lisp.
+* Dired-X: (emacs-21/dired-x).		Dired Extra Features.
+* Dired-X: (emacs-22/dired-x).		Dired Extra Features.
+* Ebrowse: (emacs-21/ebrowse).		A C++ class browser for Emacs.
+* Ebrowse: (emacs-22/ebrowse).		A C++ class browser for Emacs.
+* Ediff: (emacs-21/ediff).		A visual interface for comparing and
+					merging programs.
+* Ediff: (emacs-22/ediff).		A visual interface for comparing and
+					merging programs.
+* Elisp: (emacs-22/elisp).		The Emacs Lisp Reference Manual.
+* Emacs: (emacs-21/emacs).		The extensible self-documenting text
+					editor.
+* Emacs: (emacs-22/emacs).		The extensible self-documenting text
+					editor.
+* Emacs FAQ: (emacs-21/efaq).		Frequently Asked Questions about
+					Emacs.
+* Emacs FAQ: (emacs-22/efaq).		Frequently Asked Questions about
+					Emacs.
+* Emacs Lisp Intro: (emacs-22/eintr).	A simple introduction to Emacs Lisp
+					programming.
+* Emacs MIME: (emacs-21/emacs-mime).	The MIME de/composition library.
+* Emacs MIME: (emacs-22/emacs-mime).	Emacs MIME de/composition library.
+* ERC: (emacs-22/erc).			Powerful, modular, and extensible IRC
+					client for Emacs.
+* Eshell: (emacs-21/eshell).		A command shell implemented in Emacs
+					Lisp.
+* Eshell: (emacs-22/eshell).		A command shell implemented in Emacs
+					Lisp.
+* EUDC: (emacs-21/eudc).		A client for directory servers (LDAP,
+					PH)
+* EUDC: (emacs-22/eudc).		An Emacs client for directory servers
+					(LDAP, PH).
+* Flymake: (emacs-22/flymake).		A universal on-the-fly syntax checker.
+* Forms: (emacs-21/forms).		Emacs package for editing data bases
+					by filling in forms.
+* Forms: (emacs-22/forms).		Emacs package for editing data bases
+					by filling in forms.
+* Gnus: (emacs-21/gnus).		The newsreader Gnus.
+* Gnus: (emacs-22/gnus).		The newsreader Gnus.
+* IDLWAVE: (emacs-21/idlwave).		Major mode and shell for IDL and
+					WAVE/CL files.
+* IDLWAVE: (emacs-22/idlwave).		Major mode and shell for IDL files.
+* Info: (emacs-21/info).		Documentation browsing system.
+* Info: (emacs-22/info).		How to use the documentation browsing
+					system.
+* Ispell: (ispell).			Using ISPELL, an interactive spelling
+					corrector, inside Emacs.
+* Message: (emacs-21/message).		Mail and news composition mode that
+					goes with Gnus.
+* Message: (emacs-22/message).		Mail and news composition mode that
+					goes with Gnus.
+* MH-E: (emacs-21/mh-e).		Emacs interface to the MH mail system.
+* MH-E: (emacs-22/mh-e).		Emacs interface to the MH mail system.
+* Newsticker: (emacs-22/newsticker).	A Newsticker for Emacs.
+* Org Mode: (emacs-22/org).		Outline-based notes management and
+					organizer
+* PCL-CVS: (emacs-21/pcl-cvs).		Emacs front-end to CVS.
+* PCL-CVS: (emacs-22/pcl-cvs).		Emacs front-end to CVS.
+* PGG: (emacs-22/pgg).			Emacs interface to various PGP
+					implementations.
+* Rcirc: (emacs-22/rcirc).		Internet Relay Chat (IRC) client.
+* RefTeX: (emacs-21/reftex).		Emacs support for LaTeX
+					cross-references and citations.
+* RefTeX: (emacs-22/reftex).		Emacs support for LaTeX
+					cross-references and citations.
+* SC: (emacs-21/sc).			Supercite lets you cite parts of
+					messages you're replying to, in
+					flexible ways.
+* SC: (emacs-22/sc).			Supercite lets you cite parts of
+					messages you're replying to, in
+					flexible ways.
+* SES: (emacs-22/ses).			Simple Emacs Spreadsheet
+* Sieve: (emacs-22/sieve).		Managing Sieve scripts in Emacs.
+* SMTP: (emacs-22/smtpmail).		Emacs library for sending mail via
+					SMTP.
+* Speedbar: (emacs-21/speedbar).	File/Tag summarizing utility.
+* Speedbar: (emacs-22/speedbar).	File/Tag summarizing utility.
+* TRAMP: (emacs-22/tramp).		Transparent Remote Access, Multiple
+					Protocol GNU Emacs remote file access
+					via rsh and rcp.
+* URL: (emacs-22/url).			URL loading package.
+* VIP: (emacs-21/vip).			An older VI-emulation for Emacs.
+* VIP: (emacs-22/vip).			An older VI-emulation for Emacs.
+* VIPER: (emacs-21/viper).		The newest Emacs VI-emulation mode.
+					(also, A VI Plan for Emacs Rescue or
+					the VI PERil.)
+* VIPER: (emacs-22/viper).		The newest Emacs VI-emulation mode.
+					(also, A VI Plan for Emacs Rescue or
+					the VI PERil.)
+* Widget: (emacs-21/widget).		Documenting the "widget" package used
+					by the Emacs Custom facility.
+* Widget: (emacs-22/widget).		The "widget" package used by the Emacs
+					Customization facility.
+* WoMan: (emacs-21/woman).		Browse UN*X Manual Pages `Wo (without)
+					Man'.
+* WoMan: (emacs-22/woman).		Browse UN*X Manual Pages "W.O.
+					(without) Man".
+
+GNU packages
+* Gcal: (gcal). 			GNU calendar program.
+* Tcal: (gcal)Invoking tcal.		Run Gcal with tomorrow's date.
+* Txt2gcal: (gcal)Invoking txt2gcal.	Calendar text to resource file.
+* Gcal2txt: (gcal)Invoking gcal2txt.	Calendar resource to text file.
+
+Information:
+* Debian menu: (menu).			The Debian menu system
+* Jargon: (jargon).			The definitive compendium of hacker
+					slang
+
+GNU Plotting Utilities
+* Plotting utilities: (plotutils).	GNU plotting utilities.
+* graph: (plotutils)graph Invocation.	Plot datasets, possibly in real time.
+* plot: (plotutils)plot Invocation.	Convert and display plot files.
+* pic2plot: (plotutils)pic2plot Invocation.
+					Convert files in the pic language
+* tek2plot: (plotutils)tek2plot Invocation.
+					Translate legacy Tektronix data.
+* plotfont: (plotutils)plotfont Invocation.
+					Plot character maps of fonts.
+* spline: (plotutils)spline Invocation. Interpolate between points in
+					datasets.
+* ode: (plotutils)ode Invocation.	Integrate differential equations.
+* libplot: (plotutils)libplot.		A library for 2-D vector graphics.
+* Appendices: (plotutils)Appendices.	More info on the plotting utilities.
+
+The Algorithmic Language Scheme
+* Slib: (slib). 			The SLIB portable Scheme library
+
+Technical
+* pcb: (pcb).				An interactive printed circuit board
+					editor.
+
+Software development
+* Cpplib: (cppinternals).		Cpplib internals.
+* gcc: (gcc).				The GNU Compiler Collection.
+* g++: (gcc).				The GNU C++ compiler.
+* Cpp: (cpp).				The GNU C preprocessor.
+* cpp-4.3: (cpp-4.3).			The GNU C preprocessor.
+* cppinternals-4.3: (cppinternals-4.3). Cpplib internals.
+* gcc-4.3: (gcc-4.3).			The GNU Compiler Collection.
+* g++-4.3: (gcc-4.3).			The GNU C++ compiler.
+* Automake: (automake-1.10).		Making GNU standards-compliant
+					Makefiles.
+* gccinstall: (gccinstall).		Installing the GNU Compiler
+					Collection.
+* gccinstall-4.3: (gccinstall-4.3).	Installing the GNU Compiler
+					Collection.
+* gccint-4.3: (gccint-4.3).		Internals of the GNU Compiler
+					Collection.
+
+Viewers
+* gv: (gv).				The GNU PostScript and PDF viewer.
+
+Texinfo documentation system
+* Web2c: (web2c).			TeX, Metafont, and companion programs.
+* bibtex: (web2c)bibtex invocation.	Maintaining bibliographies.
+* dmp: (web2c)dmp invocation.		Troff->MPX (MetaPost pictures).
+* dvicopy: (web2c)dvicopy invocation.	Virtual font expansion
+* dvitomp: (web2c)dvitomp invocation.	DVI to MPX (MetaPost pictures).
+* dvitype: (web2c)dvitype invocation.	DVI to human-readable text.
+* gftodvi: (web2c)gftodvi invocation.	Generic font proofsheets.
+* gftopk: (web2c)gftopk invocation.	Generic to packed fonts.
+* gftype: (web2c)gftype invocation.	GF to human-readable text.
+* makempx: (web2c)makempx invocation.	MetaPost label typesetting.
+* mf: (web2c)mf invocation.		Creating typeface families.
+* mft: (web2c)mft invocation.		Prettyprinting Metafont source.
+* mltex: (web2c)MLTeX.			Multi-lingual TeX.
+* mpost: (web2c)mpost invocation.	Creating technical diagrams.
+* mpto: (web2c)mpto invocation. 	MetaPost label extraction.
+* newer: (web2c)newer invocation.	Compare modification times.
+* patgen: (web2c)patgen invocation.	Creating hyphenation patterns.
+* pktogf: (web2c)pktogf invocation.	Packed to generic fonts.
+* pktype: (web2c)pktype invocation.	PK to human-readable text.
+* pltotf: (web2c)pltotf invocation.	Property list to TFM.
+* pooltype: (web2c)pooltype invocation. Display WEB pool files.
+* tangle: (web2c)tangle invocation.	WEB to Pascal.
+* tex: (web2c)tex invocation.		Typesetting.
+* tftopl: (web2c)tftopl invocation.	TFM -> property list.
+* vftovp: (web2c)vftovp invocation.	Virtual font -> virtual pl.
+* vptovf: (web2c)vptovf invocation.	Virtual pl -> virtual font.
+* weave: (web2c)weave invocation.	WEB to TeX.
+* Kpathsea: (kpathsea). 		File lookup along search paths.
+* kpsewhich: (kpathsea)Invoking kpsewhich.
+					TeX file searching.
+* mktexmf: (kpathsea)mktex scripts.	MF source generation.
+* mktexpk: (kpathsea)mktex scripts.	PK bitmap generation.
+* mktextex: (kpathsea)mktex scripts.	TeX source generation.
+* mktextfm: (kpathsea)mktex scripts.	TeX font metric generation.
+* mktexlsr: (kpathsea)Filename database.
+					Update ls-R.
+* DVI-to-Postscript: (dvips).		Translating TeX DVI files to
+					PostScript.
+* afm2tfm: (dvips)Invoking afm2tfm.	Making Type 1 fonts available to TeX.
+* dvips: (dvips)Invoking Dvips. 	DVI-to-PostScript translator.
+* Eplain: (eplain).			Expanding on plain Tex.
+* LaTeX2e: (latex).			LaTeXe help 1.6.
+* info standalone: (info-stnd). 	Read Info documents without Emacs.
+* infokey: (info-stnd)Invoking infokey. Compile Info customizations.
+* Info: (info). 			How to use the documentation browsing
+					system.
+* TeX Directories: (tds).		A directory structure for TeX files.
+* Texinfo: (texinfo).			The GNU documentation format.
+* install-info: (texinfo)Invoking install-info.
+					Update info/dir entries.
+* texi2dvi: (texinfo)Format with texi2dvi.
+					Print Texinfo documents.
+* texi2pdf: (texinfo)PDF Output.	PDF output for Texinfo.
+* pdftexi2dvi: (texinfo)PDF Output.	PDF output for Texinfo.
+* texindex: (texinfo)Format with tex/texindex.
+					Sort Texinfo index files.
+* makeinfo: (texinfo)Invoking makeinfo. Translate Texinfo source.
+* Texi2HTML: (texi2html).		Texinfo to HTML Converter.
+
+Graphics Utilities
+* xzgv: (xzgv). 			A picture viewer for X, with a
+					thumbnail-based file selector.
+
+Math
+* GNUPLOT: (gnuplot).			An Interactive Plotting Program
+
+Software libraries
+* Libc: (libc). 			C library.
+
+Editors
+* nano: (nano). 			Small and friendly text editor.
+
+Network Applications
+* Wget: (wget). 			The non-interactive network
+					downloader.
+
+SoundINFO-DIR-SECTION Development
+* Festival: (festival). 		Speech synthesis system.
+
+Document Preparation
+* linuxdoc-sgml: (linuxdoc-sgml).	Linux Documentation Project SGML tools
+
+GNU programming tools
+* AutoGen: (autogen).			The Automated Program Generator
+
+General Commands
+* dc: (dc).				Arbitrary precision RPN "Desktop
+					Calculator".
+* Diff: (diff). 			The the GNU `diff', `diff3', `sdiff',
+					and `cmp' commands for showing the
+					differences between text files and the
+					`patch' command for using their output
+					to update files.
+* Ed: (ed).				The GNU line editor.
+* Gawk: (gawk). 			A text scanning and processing
+					language.
+* Gawkinet: (gawkinet). 		TCP/IP Internetworking With `gawk'.
+* Recode: (recode).			Character set conversion utility.
+* Screen: (screen).			Full-screen window manager.
+* sed: (sed).				Stream EDitor.
+* Mgetty: (mgetty).			Use modems for Logins, and data, fax
+					and voice
+* Shar utilities: (sharutils).		Shell archiver, uuencode/uudecode.
+* Tar: (tar).				Making tape (or disk) archives.
+* Cpio: (cpio). 			A program to manage archives of files.
+* a2ps: (a2ps). 			PostScript Generating Utility
+* PreScript: (a2ps) PreScript.		Input language for a2ps
+* card: (a2ps) card.			Print Reference Cards
+* fixps: (a2ps) fixps.			Fixing Some Ill Designed PostScript
+					Files
+* fixnt: (a2ps) fixnt.			Fixing Microsoft NT PostScript Files
+* pdiff: (a2ps) pdiff.			Produce Pretty Comparison of Files
+* psmandup: (a2ps) psmandup.		Printing Duplex on Simplex Printers
+* psset: (a2ps) psset.			Inserting calls to setpagedevice
+* ogonkify: (ogonkify). 		Ogonkify
+* Time: (time). 			A utility to time the execution of a
+					command
+* Mtools: (mtools).			Mtools: utilities to access DOS disks
+					in Unix.
+* wdiff: (wdiff).			Word difference finder.

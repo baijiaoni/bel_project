@@ -1,0 +1,26 @@
+
+State Machine - |pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_slave_fsm:fsm|r_state
+Name r_state.S_DROP r_state.S_READ r_state.S_RD_ADR r_state.S_WRITE r_state.S_WR_ADR r_state.S_CYC_HDR r_state.S_PROBE_ID r_state.S_PROBE_DROP r_state.S_EB_HDR 
+r_state.S_EB_HDR 0 0 0 0 0 0 0 0 0 
+r_state.S_PROBE_DROP 0 0 0 0 0 0 0 1 1 
+r_state.S_PROBE_ID 0 0 0 0 0 0 1 0 1 
+r_state.S_CYC_HDR 0 0 0 0 0 1 0 0 1 
+r_state.S_WR_ADR 0 0 0 0 1 0 0 0 1 
+r_state.S_WRITE 0 0 0 1 0 0 0 0 1 
+r_state.S_RD_ADR 0 0 1 0 0 0 0 0 1 
+r_state.S_READ 0 1 0 0 0 0 0 0 1 
+r_state.S_DROP 1 0 0 0 0 0 0 0 1 
+
+State Machine - |pexaria|ez_usb:usb|ez_usb_fifos:EZUSB|state
+Name state.IDLE_PKTEND state.DRIVE_PKTEND state.IDLE_DATA state.IDLE_WRITE state.DRIVE_WRITE state.IDLE_READ state.LATCH_DATA state.DRIVE_READ state.SET_ADDR state.DISPATCH state.LATCH_FLAGS 
+state.LATCH_FLAGS 0 0 0 0 0 0 0 0 0 0 0 
+state.DISPATCH 0 0 0 0 0 0 0 0 0 1 1 
+state.SET_ADDR 0 0 0 0 0 0 0 0 1 0 1 
+state.DRIVE_READ 0 0 0 0 0 0 0 1 0 0 1 
+state.LATCH_DATA 0 0 0 0 0 0 1 0 0 0 1 
+state.IDLE_READ 0 0 0 0 0 1 0 0 0 0 1 
+state.DRIVE_WRITE 0 0 0 0 1 0 0 0 0 0 1 
+state.IDLE_WRITE 0 0 0 1 0 0 0 0 0 0 1 
+state.IDLE_DATA 0 0 1 0 0 0 0 0 0 0 1 
+state.DRIVE_PKTEND 0 1 0 0 0 0 0 0 0 0 1 
+state.IDLE_PKTEND 1 0 0 0 0 0 0 0 0 0 1 

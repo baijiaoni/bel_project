@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="pexaria">
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_cfg_fifo:cfg|eb_fifo:fifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_rdu3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_pass_fifo:pass|eb_fifo:fifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_vgu3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_tag_fifo:tag|eb_fifo:fifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_rdu3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|xwb_streamer:USB2EB|xwb_dma:dma|generic_simple_dpram:ring|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_rpu3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|build_id:id|generic_simple_dpram:rom|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_fs04.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_wbm_fifo:wbm|eb_fifo:datfifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_1hu3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|xwb_streamer:UART2USB|xwb_dma:dma|generic_simple_dpram:ring|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_lku3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|xwb_streamer:USB2UART|xwb_dma:dma|generic_simple_dpram:ring|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_lku3.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
