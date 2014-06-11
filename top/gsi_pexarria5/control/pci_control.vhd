@@ -230,7 +230,7 @@ begin
       g_family      => "Arria V",
       g_project     => "pci_control",
       g_flash_bits  => 25,
-      g_pll_skew    => 6500/(1000/8), -- 6500ps shift
+      g_pll_skew    => 6750/(1000/8), -- -1.25ns shift
       g_gpio_out    => 8,
       g_lvds_in     => 2,
       g_lvds_out    => 0,
@@ -318,9 +318,9 @@ begin
   led(7) <= '0' when gpio_o(2)='1' else 'Z';
   led(8) <= '0' when gpio_o(3)='1' else 'Z';
   p7     <= '0' when gpio_o(4)='1' else 'Z'; -- LED5 (DB1/2)
-  n7     <= '0' when gpio_o(4)='1' else 'Z'; -- LED6
-  p8     <= '0' when gpio_o(4)='1' else 'Z'; -- LED7
-  n8     <= '0' when gpio_o(4)='1' else 'Z'; -- LED8
+  n7     <= '0' when gpio_o(5)='1' else 'Z'; -- LED6
+  p8     <= '0' when gpio_o(6)='1' else 'Z'; -- LED7
+  n8     <= '0' when gpio_o(7)='1' else 'Z'; -- LED8
   
   -- LVDS->LEMO output enable / termination
   n10 <= '0' when lvds_oen(0)='0' else 'Z'; -- TTLIO1 output enable

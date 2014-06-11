@@ -11,11 +11,11 @@ PREFIX      ?= /usr/local
 EXTRA_FLAGS ?=
 PWD         := $(shell pwd)
 
-all::	etherbone tools eca sdbfs toolchain firmware driver
+all::	etherbone tools eca tlu sdbfs toolchain firmware driver
 
-install::	etherbone-install tools-install eca-install driver-install
+install::	etherbone-install tools-install eca-install tlu-install driver-install
 
-clean::	etherbone-clean tools-clean eca-clean sdbfs-clean driver-clean toolchain-clean firmware-clean scu2-clean scu3-clean exploder-clean pexarria5-clean
+clean::	etherbone-clean tools-clean eca-clean tlu-clean sdbfs-clean driver-clean toolchain-clean firmware-clean scu2-clean scu3-clean exploder-clean pexarria5-clean
 
 distclean::	clean
 	git clean -xfd .
@@ -47,6 +47,15 @@ eca-clean::
 
 eca-install::
 	$(MAKE) -C ip_cores/wr-cores/modules/wr_eca EB=$(PWD)/ip_cores/etherbone-core/api EXTRA_FLAGS="$(EXTRA_FLAGS)" install
+
+tlu::		etherbone
+	$(MAKE) -C ip_cores/wr-cores/modules/wr_tlu EB=$(PWD)/ip_cores/etherbone-core/api EXTRA_FLAGS="$(EXTRA_FLAGS)" all
+
+tlu-clean::
+	$(MAKE) -C ip_cores/wr-cores/modules/wr_tlu EB=$(PWD)/ip_cores/etherbone-core/api EXTRA_FLAGS="$(EXTRA_FLAGS)" clean
+
+tlu-install::
+	$(MAKE) -C ip_cores/wr-cores/modules/wr_tlu EB=$(PWD)/ip_cores/etherbone-core/api EXTRA_FLAGS="$(EXTRA_FLAGS)" install
 
 driver::
 	$(MAKE) -C ip_cores/fpga-config-space/pcie-wb all
@@ -116,19 +125,19 @@ pexarria5::	firmware
 pexarria5-clean::
 	$(MAKE) -C syn/gsi_pexarria5/control PATH=$(PWD)/toolchain/bin:$(PATH) clean
 
-addac::	
+addac::		firmware
 	$(MAKE) -C syn/gsi_addac PATH=$(PWD)/toolchain/bin:$(PATH) all
 
 addac-clean::
 	$(MAKE) -C syn/gsi_addac PATH=$(PWD)/toolchain/bin:$(PATH) clean
 
-addac2::	
+addac2::	firmware
 	$(MAKE) -C syn/gsi_addac2 PATH=$(PWD)/toolchain/bin:$(PATH) all
 
 addac2-clean::
 	$(MAKE) -C syn/gsi_addac2 PATH=$(PWD)/toolchain/bin:$(PATH) clean
 
-diob::	
+diob::		firmware		
 	$(MAKE) -C syn/scu_diob PATH=$(PWD)/toolchain/bin:$(PATH) all
 
 diob-clean::

@@ -1,15 +1,18 @@
+TOP		:= $(dir $(lastword $(MAKEFILE_LIST)))..
+
 QUARTUS		?= /opt/quartus
 QUARTUS_BIN	=  $(QUARTUS)/bin
 
 RAM_SIZE	?= 4096
+SPI_LANES	?= ASx1
 
 CROSS_COMPILE	?= lm32-elf-
 CC		=  $(CROSS_COMPILE)gcc
 SHELL = /bin/sh
 OBJCOPY		=  $(CROSS_COMPILE)objcopy
-GENRAMMIF	?= ../../../ip_cores/wrpc-sw/tools/genrammif
+GENRAMMIF	?= $(TOP)/ip_cores/wrpc-sw/tools/genrammif
 CFLAGS		?= -mmultiply-enabled -mbarrel-shift-enabled -Os -DCPU_CLOCK=62500
-STUBD		?= ../../../modules/lm32_stub
+STUBD		?= $(TOP)/modules/lm32_stub
 STUBS		?= $(STUBD)/stubs.c $(STUBD)/crt0.S
 LDFLAGS		?= -nostdlib -T $(STUBD)/ram.ld -Wl,--defsym,_fstack=$(RAM_SIZE)-4 -lgcc -lc
 
@@ -34,8 +37,8 @@ prog:
 	$(GENRAMMIF) $< $(RAM_SIZE) > $@
 
 %.sof:	%.qsf %.mif
-	python2.7 ../../../ip_cores/hdl-make/hdlmake quartus-project
-	find ../../.. -name Manifest.py > $*.dep
+	python2.7 $(TOP)/ip_cores/hdl-make/hdlmake quartus-project
+	find $(TOP) -name Manifest.py > $*.dep
 	sed -n -e 's/"//g;s/quartus_sh://;s/set_global_assignment.*-name.*_FILE //p' < $< >> $*.dep
 	echo "$*.sof $@:	$< " `cat $*.dep` > $*.dep
 	$(QUARTUS_BIN)/quartus_sh --tcl_eval load_package flow \; project_open $* \; execute_flow -compile
@@ -51,7 +54,7 @@ prog:
 	$(QUARTUS_BIN)/quartus_cpf -c -o $*.opt -d $(FLASH) -s $(DEVICE) $< $@
 
 %.pof:	%.sof %.opt
-	$(QUARTUS_BIN)/quartus_cpf -c -o $*.opt -d $(FLASH) $< $@
+	$(QUARTUS_BIN)/quartus_cpf -c -o $*.opt -d $(FLASH) -m $(SPI_LANES) $< $@
 
 %.rpd:	%.pof %.opt
 	$(QUARTUS_BIN)/quartus_cpf -c -o $*.opt $< $@

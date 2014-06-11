@@ -16,7 +16,8 @@
 #include "cb.h"
 
 //#define DEBUG
-//#define FGDEBUG
+#define FGDEBUG
+#define CBDEBUG
 
 extern struct w1_bus wrpc_w1_bus;
 
@@ -34,24 +35,22 @@ struct scu_bus SHARED scub;
 struct fg_list SHARED fgs;
 volatile uint32_t SHARED fg_control;
 
-volatile unsigned int* pSDB_base    = (unsigned int*)0x3fffe000;
-volatile unsigned int* display;
-volatile unsigned int* irq_slave;
 volatile unsigned short* scub_base;
-volatile unsigned int* cpu_ID;
-volatile unsigned int* time_sys;
-volatile unsigned int* cores;
-volatile unsigned int* atomic;
 volatile unsigned int* BASE_ONEWIRE;
 volatile unsigned int* BASE_UART;
 
 int slaves[SCU_BUS_MAX_SLOTS+1] = {0};
 volatile unsigned short icounter[SCU_BUS_MAX_SLOTS+1];
 
-void usleep(int x)
+void usleep(int us)
 {
-  int i;
-  for (i = x * CPU_CLOCK/1000/4; i > 0; i--) asm("# noop");
+  unsigned i;
+  unsigned long long delay = us;
+  /* prevent arithmetic overflow */
+  delay *= CPU_CLOCK;
+  delay /= 1000000;
+  delay /= 4; // instructions per loop
+  for (i = delay; i > 0; i--) asm("# noop");
 }  
 
 void msDelay(int msecs) {
@@ -153,7 +152,6 @@ void dis_irq() {
   irq_set_mask(0x02);
   irq_disable();
   isr_table_clr();
-  irq_clear_queue(0xf);
   for (i = 0; i < SCU_BUS_MAX_SLOTS; i++) {
     icounter[i] = 0; //reset counter in ISR
   }
@@ -191,13 +189,14 @@ void updateTemps() {
   #ifdef DEBUG
   mprintf("Onboard Onewire Devices:\n");
   #endif
-  BASE_ONEWIRE = (unsigned int*)BASE_OW_WR;
-  wrpc_w1_init();
-  ReadTempDevices(0, &board_id, &board_temp);
+ //conflicts with WR
+ // BASE_ONEWIRE = (unsigned int*)BASE_OW_WR;
+//  wrpc_w1_init();
+//  ReadTempDevices(0, &board_id, &board_temp);
   #ifdef DEBUG
   mprintf("External Onewire Devices:\n");
   #endif
-  BASE_ONEWIRE = (unsigned int*)BASE_OW_EXT;
+  //BASE_ONEWIRE = (unsigned int*)BASE_OW_EXT;
   wrpc_w1_init();
   ReadTempDevices(0, &ext_id, &ext_temp);
   ReadTempDevices(1, &backplane_id, &backplane_temp);
@@ -208,13 +207,13 @@ void init() {
   uart_init_hw();
   updateTemps();
   init_buffers(&fg_buffer);
-
+  #ifdef CBDEBUG
   for (i=0; i < MAX_FG_DEVICES; i++) {
-    mprintf("cb[%d]: isEmpty = %d\n", i, cbisEmpty(&fg_buffer, i));
-    mprintf("cb[%d]: isFull = %d\n", i, cbisFull(&fg_buffer, i));
-    mprintf("cb[%d]: getCount = %d\n", i, cbgetCount(&fg_buffer, i));
+    mprintf("cb[%d]: isEmpty = %d\n", i, cbisEmpty((struct circ_buffer *)&fg_buffer, i));
+    mprintf("cb[%d]: isFull = %d\n", i, cbisFull((struct circ_buffer *)&fg_buffer, i));
+    mprintf("cb[%d]: getCount = %d\n", i, cbgetCount((struct circ_buffer *)&fg_buffer, i));
   }
-  
+  #endif
   scan_scu_bus(&scub, backplane_id, scub_base);
   scan_for_fgs(&scub, &fgs);
   #ifdef FGDEBUG
@@ -256,37 +255,36 @@ void init() {
 int main(void) {
   char buffer[20];
   int i = 0;
-  
-  display      = (unsigned int*)find_device(SCU_OLED_DISPLAY);
-  irq_slave    = (unsigned int*)find_device(IRQ_MSI_CTRL_IF);
+  struct param_set pset;
+  unsigned int old[MAX_FG_DEVICES] = {0};
+
+  discoverPeriphery();  
   scub_base    = (unsigned short*)find_device(SCU_BUS_MASTER);
-  BASE_UART    = (unsigned int*)find_device(WR_Periph_UART);
-  BASE_ONEWIRE = (unsigned int*)find_device(WR_Periph_1Wire);  
+  BASE_ONEWIRE = (unsigned int*)find_device(WR_1Wire);
 
-
-  
   disp_reset();
   disp_put_c('\f');
   init(); 
-  
-  //config of DAC and FG
-  while(slaves[i]) {
-    i++;
-  }
-  
-  // disp_reset();	
-  // disp_put_str(mytext);
-  
-  // wait for WR deamon to star 
-  
 
   while(1) {
-    updateTemps();
-            
-    mprintf("cb[%d]: isEmpty = %d\n", 0, cbisEmpty(&fg_buffer, 0));
-    mprintf("cb[%d]: isFull = %d\n", 0, cbisFull(&fg_buffer, 0));
-    mprintf("cb[%d]: getCount = %d\n", 0, cbgetCount(&fg_buffer, 0));
+    //updateTemps();
+    
+    for(i = 0; i < MAX_FG_DEVICES; i++) {
+      if (!cbisEmpty((struct circ_buffer *)&fg_buffer, i)) {
+        cbRead((struct circ_buffer *)&fg_buffer, i, &pset);
+        if((pset.coeff_c % 10000) == 0) {
+          mprintf("cb[%d]: fcnt: %d coeff_a: %x coeff_b: 0x%x coeff_c: 0x%x\n",
+          i, cbgetCount((struct circ_buffer *)&fg_buffer, i), pset.coeff_a, pset.coeff_b, pset.coeff_c);
+        }
+        if (old[i] + 1 != pset.coeff_c) {
+          mprintf("cb[%d]: buffer value not consistent old: %x coeff_c: %x\n", i, old[i], pset.coeff_c);
+          return(1);
+        }
+        old[i] = pset.coeff_c;
+      }
 
+      usleep(100);
+    }
     //placeholder for fg software
     //if (fg_control) {
     //  init();
