@@ -57,7 +57,6 @@ entity monster is
     g_family               : string; -- "Arria II" or "Arria V"
     g_project              : string;
     g_flash_bits           : natural;
-    g_pll_skew             : natural; -- (ref-tx) in ps
     g_ram_size             : natural;
     g_gpio_inout           : natural;
     g_gpio_in              : natural;
@@ -254,9 +253,9 @@ architecture rtl of monster is
     f_lm32_irq_bridge_sdb(g_lm32_cores, g_lm32_MSIs);
   
   constant c_irq_layout_req : t_sdb_record_array(c_irq_slaves-1 downto 0) :=
-   (c_irqs_lm32     => f_sdb_auto_device(c_irq_ep_sdb,    true),
-    c_irqs_pcie     => f_sdb_auto_device(c_msi_pcie_sdb,  g_en_pcie),
-    c_irqs_vme      => f_sdb_auto_device(c_vme_msi_sdb,   g_en_vme));
+   (c_irqs_lm32     => f_sdb_auto_bridge(c_lm32_irq_bridge_sdb,  true),
+    c_irqs_pcie     => f_sdb_auto_device(c_msi_pcie_sdb,      g_en_pcie),
+    c_irqs_vme      => f_sdb_auto_device(c_vme_msi_sdb,       g_en_vme));
   
   constant c_irq_layout      : t_sdb_record_array(c_irq_slaves-1 downto 0) 
                                                   := f_sdb_auto_layout(c_irq_layout_req);
@@ -284,7 +283,7 @@ architecture rtl of monster is
   constant c_topm_fpq       : natural := 5;
   
   -- required slaves
-  constant c_top_slaves     : natural := 18;
+  constant c_top_slaves     : natural := 19;
   constant c_tops_irq       : natural := 0;
   constant c_tops_wrc       : natural := 1;
   constant c_tops_lm32      : natural := 2;
@@ -304,6 +303,7 @@ architecture rtl of monster is
   constant c_tops_mil       : natural := 15;
   constant c_tops_mil_ctrl  : natural := 16;
   constant c_tops_ow        : natural := 17;
+  constant c_tops_scubirq   : natural := 18;
 
   
   -- We have to specify the values for WRC as there is no generic out in vhdl
@@ -335,6 +335,7 @@ architecture rtl of monster is
     c_tops_lcd       => f_sdb_auto_device(c_wb_serial_lcd_sdb,              g_en_lcd),
     c_tops_oled      => f_sdb_auto_device(c_oled_display,                   g_en_oled),
     c_tops_scubus    => f_sdb_auto_device(c_scu_bus_master,                 g_en_scubus),
+    c_tops_scubirq   => f_sdb_auto_device(c_scu_irq_ctrl_sdb,               g_en_scubus),
     c_tops_mil       => f_sdb_auto_device(c_xwb_gsi_mil_scu,                g_en_mil),
     c_tops_mil_ctrl  => f_sdb_auto_device(c_irq_master_ctrl_sdb,            g_en_mil),
     c_tops_ow        => f_sdb_auto_device(c_wrc_periph2_sdb,                g_en_user_ow));
@@ -393,7 +394,6 @@ architecture rtl of monster is
   signal clk_12_5         : std_logic;
   signal rstn_ref         : std_logic;
   signal rstn_butis       : std_logic;
-  signal rstn_phase       : std_logic;
   
   signal phase_done       : std_logic;
   signal phase_step       : std_logic;
@@ -509,7 +509,7 @@ architecture rtl of monster is
   signal s_vme_addr_o       : std_logic_vector(31 downto 1);
   signal s_vme_buffer       : t_vme_buffer;
   signal s_vme_buffer_latch : std_logic;
-    
+  
   -- END OF VME signals
   ----------------------------------------------------------------------------------
   
@@ -551,7 +551,7 @@ begin
   
   reset : altera_reset
     generic map(
-      g_clocks => 3)
+      g_clocks => 4)
     port map(
       clk_free_i    => clk_free,
       rstn_i        => core_rstn_i,
@@ -563,9 +563,11 @@ begin
       clocks_i(0)   => clk_free,
       clocks_i(1)   => clk_sys,
       clocks_i(2)   => clk_update,
+      clocks_i(3)   => clk_ref,
       rstn_o(0)     => rstn_free,
       rstn_o(1)     => rstn_sys,
-      rstn_o(2)     => rstn_update);
+      rstn_o(2)     => rstn_update,
+      rstn_o(3)     => rstn_ref);
 
   dmtd_a2 : if g_family = "Arria II" generate
     dmtd_inst : dmtd_pll port map(
@@ -642,23 +644,17 @@ begin
     phase : altera_phase
       generic map(
         g_select_bits   => 5,
-        g_outputs       => 3,
-        g_base          => g_pll_skew,
+        g_outputs       => 1,
+        g_base          => 0,
         g_vco_freq      => 1000, -- 1GHz
-        g_output_freq   => (0 => 125, 1 => 200, 2 => 25),
-        g_output_select => (0 =>   2, 1 =>   3, 2 =>  4))
+        g_output_freq   => (0 => 200),
+        g_output_select => (0 =>   3))
       port map(
         clk_i       => clk_free,
         rstn_i      => rstn_free,
-        clks_i(0)   => clk_ref,
-        clks_i(1)   => clk_butis,
-        clks_i(2)   => clk_phase,
-        rstn_o(0)   => rstn_ref,
-        rstn_o(1)   => rstn_butis,
-        rstn_o(2)   => rstn_phase,
-        offset_i(0) => (others => '0'),
-        offset_i(1) => phase_butis,
-        offset_i(2) => (others => '0'),
+        clks_i(0)   => clk_butis,
+        rstn_o(0)   => rstn_butis,
+        offset_i(0) => phase_butis,
         phasedone_i => phase_done,
         phasesel_o  => phase_sel,
         phasestep_o => phase_step);
@@ -683,27 +679,17 @@ begin
     phase : altera_phase
       generic map(
         g_select_bits   => 5,
-        g_outputs       => 5,
-        g_base          => g_pll_skew,
+        g_outputs       => 1,
+        g_base          => 0,
         g_vco_freq      => 1000, -- 1GHz
-        g_output_freq   => (0 => 125, 1 => 200, 2 => 25, 3 => 1000, 4 => 125),
-        g_output_select => (0 =>   3, 1 =>   4, 2 =>  5, 3 =>    6, 4 =>   7))
+        g_output_freq   => (0 => 200),
+        g_output_select => (0 =>   4))
       port map(
         clk_i       => clk_free,
         rstn_i      => rstn_free,
-        clks_i(0)   => clk_ref,
-        clks_i(1)   => clk_butis,
-        clks_i(2)   => clk_phase,
-        clks_i(3)   => '0', -- these clocks should not be used in core logic
-        clks_i(4)   => '0',
-        rstn_o(0)   => rstn_ref,
-        rstn_o(1)   => rstn_butis,
-        rstn_o(2)   => rstn_phase,
-        rstn_o(3)   => open,
-        rstn_o(4)   => open,
-        offset_i(0) => (others => '0'),
-        offset_i(1) => phase_butis,
-        offset_i(2) => (others => '0'),
+        clks_i(0)   => clk_butis,
+        rstn_o(0)   => rstn_butis,
+        offset_i(0) => phase_butis,
         phasedone_i => phase_done,
         phasesel_o  => phase_sel,
         phasestep_o => phase_step);
@@ -1418,6 +1404,7 @@ begin
   
   scub_n : if not g_en_scubus generate
     top_cbar_master_i(c_tops_scubus) <= cc_dummy_slave_out;
+    top_cbar_master_i(c_tops_scubirq) <= cc_dummy_slave_out;
     irq_cbar_slave_i (c_irqm_scubus) <= cc_dummy_master_out;
     scubus_a_d <= (others => 'Z');
   end generate;
@@ -1435,6 +1422,8 @@ begin
         rst_n_i  => rstn_sys,
         irq_master_o       => irq_cbar_slave_i (c_irqm_scubus),
         irq_master_i       => irq_cbar_slave_o (c_irqm_scubus),
+        ctrl_irq_o         => top_cbar_master_i(c_tops_scubirq),
+        ctrl_irq_i         => top_cbar_master_o(c_tops_scubirq),
         scu_slave_o        => top_cbar_master_i(c_tops_scubus),
         scu_slave_i        => top_cbar_master_o(c_tops_scubus),
         scub_data          => scubus_a_d,
