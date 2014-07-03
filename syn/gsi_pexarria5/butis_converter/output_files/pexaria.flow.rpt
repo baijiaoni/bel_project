@@ -1,5 +1,5 @@
 Flow report for pexaria
-Fri Apr  4 17:10:26 2014
+Tue Jun 17 14:52:10 2014
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Full Version
 
 
@@ -40,18 +40,18 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Fri Apr  4 17:10:26 2014       ;
+; Flow Status                     ; Successful - Tue Jun 17 14:52:10 2014       ;
 ; Quartus II 64-Bit Version       ; 13.1.0 Build 162 10/23/2013 SJ Full Version ;
 ; Revision Name                   ; pexaria                                     ;
 ; Top-level Entity Name           ; pexaria                                     ;
 ; Family                          ; Arria V                                     ;
 ; Device                          ; 5AGXMA3D4F27C5                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 622 / 58,900 ( 1 % )                        ;
-; Total registers                 ; 872                                         ;
-; Total pins                      ; 44 / 378 ( 12 % )                           ;
+; Logic utilization (in ALMs)     ; 831 / 58,900 ( 1 % )                        ;
+; Total registers                 ; 1256                                        ;
+; Total pins                      ; 45 / 378 ( 12 % )                           ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 20,704 / 10,762,240 ( < 1 % )               ;
+; Total block memory bits         ; 20,832 / 10,762,240 ( < 1 % )               ;
 ; Total DSP Blocks                ; 0 / 396 ( 0 % )                             ;
 ; Total HSSI RX PCSs              ; 0 / 9 ( 0 % )                               ;
 ; Total HSSI PMA RX Deserializers ; 0 / 9 ( 0 % )                               ;
@@ -67,100 +67,126 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/04/2014 17:07:10 ;
+; Start date & time ; 06/17/2014 14:49:20 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; pexaria             ;
 +-------------------+---------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                                                                    ;
-+-------------------------------------+-----------------------------------------------------------------------------------+---------------+--------------------------+----------------+
-; Assignment Name                     ; Value                                                                             ; Default Value ; Entity Name              ; Section Id     ;
-+-------------------------------------+-----------------------------------------------------------------------------------+---------------+--------------------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 166321754201.139662403020838                                                      ; --            ; --                       ; --             ;
-; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                                                              ; --            ; --                       ; eda_simulation ;
-; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (VHDL)                                                            ; <None>        ; --                       ; --             ;
-; ENABLE_SIGNALTAP                    ; Off                                                                               ; --            ; --                       ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; alt_xcvr_reconfig        ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; alt_xcvr_reconfig        ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; altera_xcvr_det_latency  ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; altpcie_av_hip_ast_hwtcl ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; arria5_pcie_hip          ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; arria5_pcie_reconf       ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; arria5_phy               ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; arria5_phy_reconf        ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; dmtd_pll5                ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; dmtd_pll5_0002           ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; ref_pll5                 ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; ref_pll5_0002            ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; sys_pll5                 ; --             ;
-; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; sys_pll5_0002            ; --             ;
-; IP_TOOL_NAME                        ; ALTCLKCTRL                                                                        ; --            ; --                       ; --             ;
-; IP_TOOL_NAME                        ; ALTCLKCTRL                                                                        ; --            ; --                       ; --             ;
-; IP_TOOL_NAME                        ; ALTCLKCTRL                                                                        ; --            ; --                       ; --             ;
-; IP_TOOL_NAME                        ; alt_xcvr_reconfig                                                                 ; --            ; alt_xcvr_reconfig        ; --             ;
-; IP_TOOL_NAME                        ; alt_xcvr_reconfig                                                                 ; --            ; alt_xcvr_reconfig        ; --             ;
-; IP_TOOL_NAME                        ; altera_xcvr_det_latency                                                           ; --            ; altera_xcvr_det_latency  ; --             ;
-; IP_TOOL_NAME                        ; altera_pcie_av_hip_ast                                                            ; --            ; altpcie_av_hip_ast_hwtcl ; --             ;
-; IP_TOOL_NAME                        ; altera_pcie_av_hip_ast                                                            ; --            ; arria5_pcie_hip          ; --             ;
-; IP_TOOL_NAME                        ; alt_xcvr_reconfig                                                                 ; --            ; arria5_pcie_reconf       ; --             ;
-; IP_TOOL_NAME                        ; altera_xcvr_det_latency                                                           ; --            ; arria5_phy               ; --             ;
-; IP_TOOL_NAME                        ; alt_xcvr_reconfig                                                                 ; --            ; arria5_phy_reconf        ; --             ;
-; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; dmtd_pll5                ; --             ;
-; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; dmtd_pll5_0002           ; --             ;
-; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; ref_pll5                 ; --             ;
-; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; ref_pll5_0002            ; --             ;
-; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; sys_pll5                 ; --             ;
-; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; sys_pll5_0002            ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; --                       ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; --                       ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; --                       ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; alt_xcvr_reconfig        ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; alt_xcvr_reconfig        ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; altera_xcvr_det_latency  ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; altpcie_av_hip_ast_hwtcl ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; arria5_pcie_hip          ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; arria5_pcie_reconf       ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; arria5_phy               ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; arria5_phy_reconf        ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; dmtd_pll5                ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; dmtd_pll5_0002           ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; ref_pll5                 ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; ref_pll5_0002            ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; sys_pll5                 ; --             ;
-; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; sys_pll5_0002            ; --             ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                                                                ; --            ; --                       ; --             ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                                                                 ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/wb_pcie/arria5_pcie_hip.cmp       ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/wb_pcie/arria5_pcie_reconf.cmp    ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/wr_arria5_phy/arria5_phy.cmp           ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/wr_arria5_phy/arria5_phy_reconf.cmp    ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/networks/arria5/dual_region.cmp   ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/networks/arria5/single_region.cmp ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/networks/arria5/global_region.cmp ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/arria5_pll/sys_pll5.cmp                ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/arria5_pll/ref_pll5.cmp                ; --            ; --                       ; --             ;
-; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/arria5_pll/dmtd_pll5.cmp               ; --            ; --                       ; --             ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                                                 ; --            ; --                       ; --             ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                                                 ; --            ; --                       ; --             ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                                        ; --            ; --                       ; --             ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                                        ; --            ; --                       ; --             ;
-; PARTITION_COLOR                     ; 16764057                                                                          ; --            ; --                       ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                                                             ; --            ; --                       ; Top            ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                                                                            ; --            ; --                       ; Top            ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                               ; --            ; --                       ; --             ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                             ; --            ; --                       ; --             ;
-; PRE_FLOW_SCRIPT_FILE                ; quartus_sh:pexaria.tcl                                                            ; --            ; --                       ; --             ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                                      ; --            ; --                       ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --             ;
-+-------------------------------------+-----------------------------------------------------------------------------------+---------------+--------------------------+----------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                                      ;
++-------------------------------------+-----------------------------------------------------------------------------------+---------------+--------------------------+------------------+
+; Assignment Name                     ; Value                                                                             ; Default Value ; Entity Name              ; Section Id       ;
++-------------------------------------+-----------------------------------------------------------------------------------+---------------+--------------------------+------------------+
+; COMPILER_SIGNATURE_ID               ; 203178706237829.140300936013486                                                   ; --            ; --                       ; --               ;
+; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                                                              ; --            ; --                       ; eda_simulation   ;
+; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (VHDL)                                                            ; <None>        ; --                       ; --               ;
+; ENABLE_SIGNALTAP                    ; On                                                                                ; --            ; --                       ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; alt_xcvr_reconfig        ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; alt_xcvr_reconfig        ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; altera_xcvr_det_latency  ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; altpcie_av_hip_ast_hwtcl ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; arria5_pcie_hip          ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; arria5_pcie_reconf       ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; arria5_phy               ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; arria5_phy_reconf        ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; dmtd_pll5                ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; dmtd_pll5_0002           ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; ref_pll5                 ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; ref_pll5_0002            ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; sys_pll5                 ; --               ;
+; IP_TOOL_ENV                         ; mwpim                                                                             ; --            ; sys_pll5_0002            ; --               ;
+; IP_TOOL_NAME                        ; ALTCLKCTRL                                                                        ; --            ; --                       ; --               ;
+; IP_TOOL_NAME                        ; ALTCLKCTRL                                                                        ; --            ; --                       ; --               ;
+; IP_TOOL_NAME                        ; ALTCLKCTRL                                                                        ; --            ; --                       ; --               ;
+; IP_TOOL_NAME                        ; alt_xcvr_reconfig                                                                 ; --            ; alt_xcvr_reconfig        ; --               ;
+; IP_TOOL_NAME                        ; alt_xcvr_reconfig                                                                 ; --            ; alt_xcvr_reconfig        ; --               ;
+; IP_TOOL_NAME                        ; altera_xcvr_det_latency                                                           ; --            ; altera_xcvr_det_latency  ; --               ;
+; IP_TOOL_NAME                        ; altera_pcie_av_hip_ast                                                            ; --            ; altpcie_av_hip_ast_hwtcl ; --               ;
+; IP_TOOL_NAME                        ; altera_pcie_av_hip_ast                                                            ; --            ; arria5_pcie_hip          ; --               ;
+; IP_TOOL_NAME                        ; alt_xcvr_reconfig                                                                 ; --            ; arria5_pcie_reconf       ; --               ;
+; IP_TOOL_NAME                        ; altera_xcvr_det_latency                                                           ; --            ; arria5_phy               ; --               ;
+; IP_TOOL_NAME                        ; alt_xcvr_reconfig                                                                 ; --            ; arria5_phy_reconf        ; --               ;
+; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; dmtd_pll5                ; --               ;
+; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; dmtd_pll5_0002           ; --               ;
+; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; ref_pll5                 ; --               ;
+; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; ref_pll5_0002            ; --               ;
+; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; sys_pll5                 ; --               ;
+; IP_TOOL_NAME                        ; altera_pll                                                                        ; --            ; sys_pll5_0002            ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; --                       ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; --                       ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; --                       ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; alt_xcvr_reconfig        ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; alt_xcvr_reconfig        ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; altera_xcvr_det_latency  ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; altpcie_av_hip_ast_hwtcl ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; arria5_pcie_hip          ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; arria5_pcie_reconf       ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; arria5_phy               ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; arria5_phy_reconf        ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; dmtd_pll5                ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; dmtd_pll5_0002           ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; ref_pll5                 ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; ref_pll5_0002            ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; sys_pll5                 ; --               ;
+; IP_TOOL_VERSION                     ; 13.1                                                                              ; --            ; sys_pll5_0002            ; --               ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                                                                ; --            ; --                       ; --               ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                                                 ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/wb_pcie/arria5_pcie_hip.cmp       ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/wb_pcie/arria5_pcie_reconf.cmp    ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/wr_arria5_phy/arria5_phy.cmp           ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/wr_arria5_phy/arria5_phy_reconf.cmp    ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/networks/arria5/dual_region.cmp   ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/networks/arria5/single_region.cmp ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/general-cores/platform/altera/networks/arria5/global_region.cmp ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/arria5_pll/sys_pll5.cmp                ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/arria5_pll/ref_pll5.cmp                ; --            ; --                       ; --               ;
+; MISC_FILE                           ; ../../../ip_cores/wr-cores/platform/altera/arria5_pll/dmtd_pll5.cmp               ; --            ; --                       ; --               ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                                                 ; --            ; --                       ; --               ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                                                 ; --            ; --                       ; --               ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                                        ; --            ; --                       ; --               ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                                        ; --            ; --                       ; --               ;
+; PARTITION_COLOR                     ; 16764057                                                                          ; --            ; --                       ; Top              ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                                                             ; --            ; --                       ; Top              ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                                                            ; --            ; --                       ; Top              ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                               ; --            ; --                       ; --               ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                             ; --            ; --                       ; --               ;
+; PRE_FLOW_SCRIPT_FILE                ; quartus_sh:pexaria.tcl                                                            ; --            ; --                       ; --               ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                                      ; --            ; --                       ; --               ;
+; SLD_FILE                            ; db/stp1_auto_stripped.stp                                                         ; --            ; --                       ; --               ;
+; SLD_NODE_CREATOR_ID                 ; 110                                                                               ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_ENTITY_NAME                ; sld_signaltap                                                                     ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_RAM_BLOCK_TYPE=AUTO                                                           ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_INFO=805334528                                                           ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_POWER_UP_TRIGGER=0                                                            ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0                                     ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SEGMENT_SIZE=128                                                              ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ATTRIBUTE_MEM_MODE=OFF                                                        ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_FLOW_USE_GENERATED=0                                                    ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_STATE_BITS=11                                                                 ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_BUFFER_FULL_STOP=1                                                            ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_CURRENT_RESOURCE_WIDTH=1                                                      ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL=1                                                               ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_SAMPLE_DEPTH=128                                                              ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_IN_ENABLED=0                                                          ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ADVANCED_TRIGGER_ENTITY=basic,1,                                              ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_LEVEL_PIPELINE=1                                                      ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_ENABLE_ADVANCED_TRIGGER=0                                                     ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_DATA_BITS=1                                                                   ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_TRIGGER_BITS=1                                                                ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK=000000000000000000000000                                       ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_INVERSION_MASK_LENGTH=24                                                      ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_CRC_LOWORD=22686                                                         ; --            ; --                       ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT       ; SLD_NODE_CRC_HIWORD=13610                                                         ; --            ; --                       ; auto_signaltap_0 ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --               ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --               ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --               ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --               ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --               ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --               ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                                                ; --            ; --                       ; --               ;
+; USE_SIGNALTAP_FILE                  ; output_files/stp1.stp                                                             ; --            ; --                       ; --               ;
++-------------------------------------+-----------------------------------------------------------------------------------+---------------+--------------------------+------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------+
@@ -168,26 +194,26 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:23     ; 1.0                     ; 970 MB              ; 00:00:22                           ;
-; Fitter                    ; 00:01:42     ; 1.3                     ; 2318 MB             ; 00:02:03                           ;
-; Assembler                 ; 00:00:25     ; 1.0                     ; 803 MB              ; 00:00:25                           ;
-; TimeQuest Timing Analyzer ; 00:00:25     ; 1.1                     ; 1362 MB             ; 00:00:26                           ;
-; EDA Netlist Writer        ; 00:00:04     ; 1.0                     ; 1054 MB             ; 00:00:04                           ;
-; Total                     ; 00:02:59     ; --                      ; --                  ; 00:03:20                           ;
+; Analysis & Synthesis      ; 00:00:22     ; 1.0                     ; 999 MB              ; 00:00:22                           ;
+; Fitter                    ; 00:01:26     ; 1.7                     ; 2302 MB             ; 00:02:01                           ;
+; Assembler                 ; 00:00:21     ; 1.0                     ; 809 MB              ; 00:00:21                           ;
+; TimeQuest Timing Analyzer ; 00:00:21     ; 1.1                     ; 1406 MB             ; 00:00:23                           ;
+; EDA Netlist Writer        ; 00:00:03     ; 1.0                     ; 1064 MB             ; 00:00:03                           ;
+; Total                     ; 00:02:33     ; --                      ; --                  ; 00:03:10                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                           ;
-+---------------------------+------------------+--------------+------------+----------------+
-; Module Name               ; Machine Hostname ; OS Name      ; OS Version ; Processor type ;
-+---------------------------+------------------+--------------+------------+----------------+
-; Analysis & Synthesis      ; belpc088         ; Ubuntu 13.10 ; 13         ; x86_64         ;
-; Fitter                    ; belpc088         ; Ubuntu 13.10 ; 13         ; x86_64         ;
-; Assembler                 ; belpc088         ; Ubuntu 13.10 ; 13         ; x86_64         ;
-; TimeQuest Timing Analyzer ; belpc088         ; Ubuntu 13.10 ; 13         ; x86_64         ;
-; EDA Netlist Writer        ; belpc088         ; Ubuntu 13.10 ; 13         ; x86_64         ;
-+---------------------------+------------------+--------------+------------+----------------+
++-----------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                               ;
++---------------------------+------------------+------------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name          ; OS Version ; Processor type ;
++---------------------------+------------------+------------------+------------+----------------+
+; Analysis & Synthesis      ; belpc136         ; Debian GNU/Linux ; 7          ; x86_64         ;
+; Fitter                    ; belpc136         ; Debian GNU/Linux ; 7          ; x86_64         ;
+; Assembler                 ; belpc136         ; Debian GNU/Linux ; 7          ; x86_64         ;
+; TimeQuest Timing Analyzer ; belpc136         ; Debian GNU/Linux ; 7          ; x86_64         ;
+; EDA Netlist Writer        ; belpc136         ; Debian GNU/Linux ; 7          ; x86_64         ;
++---------------------------+------------------+------------------+------------+----------------+
 
 
 ------------

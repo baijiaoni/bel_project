@@ -148,7 +148,7 @@ GND                          : AB17      : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB18      :        :                   :         : 3D        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB19      :        :                   :         : 3A        :                
 GND                          : AB20      : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB21      :        :                   :         : 3A        :                
+clk(n)                       : AB21      : input  : LVDS              :         : 3A        : Y              
 VCCIO3A                      : AB22      : power  :                   : 2.5V    : 3A        :                
 GND                          : AB23      : gnd    :                   :         :           :                
 GND                          : AB24      : gnd    :                   :         :           :                
@@ -174,7 +174,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AC17      :        :                   :      
 VCCIO3D                      : AC18      : power  :                   : 2.5V    : 3D        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC19      :        :                   :         : 3A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC20      :        :                   :         : 3A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AC21      :        :                   :         : 3A        :                
+clk                          : AC21      : input  : LVDS              :         : 3A        : Y              
 LED2                         : AC22      : output : 2.5 V             :         : 3A        : Y              
 DCLK                         : AC23      :        :                   :         : 3A        :                
 GND                          : AC24      : gnd    :                   :         :           :                
@@ -203,7 +203,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AD20      :        :                   :      
 VCCIO3A                      : AD21      : power  :                   : 2.5V    : 3A        :                
 LED1                         : AD22      : output : 2.5 V             :         : 3A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD23      :        :                   :         : 3A        :                
-TDI                          : AD24      : input  :                   :         : 3A        :                
+altera_reserved_tdi          : AD24      : input  : 2.5 V             :         : 3A        : N              
 AS_DATA3, DATA3              : AD25      :        :                   :         : 3A        :                
 nCSO, DATA4                  : AD26      :        :                   :         : 3A        :                
 GND                          : AE1       :        :                   :         :           :                
@@ -229,9 +229,9 @@ GND                          : AE20      : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE21      :        :                   :         : 3A        :                
 GND                          : AE22      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE23      :        :                   :         : 3A        :                
-TCK                          : AE24      : input  :                   :         : 3A        :                
+altera_reserved_tck          : AE24      : input  : 2.5 V             :         : 3A        : N              
 AS_DATA1, DATA1              : AE25      :        :                   :         : 3A        :                
-TDO                          : AE26      : output :                   :         : 3A        :                
+altera_reserved_tdo          : AE26      : output : 2.5 V             :         : 3A        : N              
 GND                          : AF2       : gnd    :                   :         :           :                
 usb_fd_io[6]                 : AF3       : bidir  : 3.3-V LVTTL       :         : 4C        : Y              
 VCCIO4C                      : AF4       : power  :                   : 3.3V    : 4C        :                
@@ -251,7 +251,7 @@ VCCIO3D                      : AF17      : power  :                   : 2.5V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF18      :        :                   :         : 3A        :                
 LED7                         : AF19      : output : 2.5 V             :         : 3A        : Y              
 LED5                         : AF20      : output : 2.5 V             :         : 3A        : Y              
-clk                          : AF21      : input  : 2.5 V             :         : 3A        : Y              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AF21      :        :                   :         : 3A        :                
 LED3                         : AF22      : output : 2.5 V             :         : 3A        : Y              
 LED4                         : AF23      : output : 2.5 V             :         : 3A        : Y              
 AS_DATA0, ASDO, DATA0        : AF24      :        :                   :         : 3A        :                
@@ -745,7 +745,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : Y18       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y19       :        :                   :         : 3A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y20       :        :                   :         : 3A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y21       :        :                   :         : 3A        :                
-TMS                          : Y22       : input  :                   :         : 3A        :                
+altera_reserved_tms          : Y22       : input  : 2.5 V             :         : 3A        : N              
 GND                          : Y23       : gnd    :                   :         :           :                
 GND                          : Y24       : gnd    :                   :         :           :                
 GND                          : Y25       :        :                   :         : B0L       :                

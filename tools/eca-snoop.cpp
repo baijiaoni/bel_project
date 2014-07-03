@@ -18,7 +18,12 @@ struct MyHandler : public Handler {
     aq->refresh();
     aq->pop(entry);
     
-    printf("Action: 0x%"PRIx64" 0x%"PRIx64" 0x%"PRIx32" 0x%"PRIx32" %s\n",
+    if (entry.tag == 0x1)
+    printf("---------------Action: 0x%"PRIx64" 0x%"PRIx64" 0x%"PRIx32" 0x%"PRIx32" %s\n",
+      entry.event, entry.param, entry.tag, entry.tef,
+      eca->date(entry.time).c_str());
+    if (entry.tag == 0x2)
+    printf("~~~~~~~~~~~~~~~Action: 0x%"PRIx64" 0x%"PRIx64" 0x%"PRIx32" 0x%"PRIx32" %s\n",
       entry.event, entry.param, entry.tag, entry.tef,
       eca->date(entry.time).c_str());
     fflush(stdout);
@@ -62,7 +67,8 @@ int main(int argc, const char** argv) {
   
   /* Program a catch all to channel 1 rule */
   Table table;
-  table.add(TableEntry(0, 0, 0xdeadbeef, 1, 0));
+  table.add(TableEntry(0x1111111100000000, 0, 0x1, 1, 64));
+  table.add(TableEntry(0x2222222200000000, 0, 0x2, 1, 64));
   eca.store(table);
   eca.flipTables();
   

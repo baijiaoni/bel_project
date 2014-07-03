@@ -64,6 +64,7 @@ ARCHITECTURE LogicFunction OF pexaria IS
    signal clk_200_local : std_logic;
 	signal countpps :unsigned (32 DOWNTO 0);
 	signal pps : std_logic;
+
 	
 	signal uart_usb : std_logic; -- from usb
    signal uart_wrc : std_logic; -- from wrc
@@ -111,9 +112,9 @@ BEGIN
 	TTLEN2 <= '1'; -- disable output (input)
 	TTLEN3 <= '0'; -- enable output
 	
-	TTLTERM1 <= '0'; -- disconnect 50Ohm termination
-	TTLTERM2 <= '1'; -- terminate input with 50Ohm
-	TTLTERM3 <= '0'; -- disconnect 50Ohm termination
+	TTLTERM1 <= '0'; -- disconnect 50hm termination
+	TTLTERM2 <= '1'; -- terminate input with 50hm
+	TTLTERM3 <= '0'; -- disconnect 50hm termination
 	---------------------------------------------------
 	--my program component
 	---------------------------------------------------
@@ -227,7 +228,7 @@ BEGIN
 	LED7 <= 'Z';
 	LED3 <= 'Z';
 	LED4 <= 'Z';
-	LED5 <= 'Z';
+	LED5 <= '0';
 	LED6 <= 'Z';
 	LED1 <= 'Z';
 

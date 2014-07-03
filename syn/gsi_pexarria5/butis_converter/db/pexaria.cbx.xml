@@ -1,13 +1,19 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="pexaria">
-		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_cfg_fifo:cfg|eb_fifo:fifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_rdu3.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_pass_fifo:pass|eb_fifo:fifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_vgu3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_decode:wdecoder" CBX_FILE_NAME="decode_1hf.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_read_pointer_counter" CBX_FILE_NAME="cntr_mki.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|build_id:id|generic_simple_dpram:rom|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_fs04.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:read_pointer_counter" CBX_FILE_NAME="cntr_6oi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_cfg_fifo:cfg|eb_fifo:fifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_rdu3.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_tag_fifo:tag|eb_fifo:fifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_rdu3.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|xwb_streamer:USB2EB|xwb_dma:dma|generic_simple_dpram:ring|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_rpu3.tdf"/>
-		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|build_id:id|generic_simple_dpram:rom|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_fs04.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram" CBX_FILE_NAME="altsyncram_kq74.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_advance_pointer_counter" CBX_FILE_NAME="cntr_22i.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|eb_raw_slave:EB|eb_slave_top:EB|eb_wbm_fifo:wbm|eb_fifo:datfifo|generic_simple_dpram:ram|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_1hu3.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|xwb_streamer:UART2USB|xwb_dma:dma|generic_simple_dpram:ring|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_lku3.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|ez_usb:usb|xwb_streamer:USB2UART|xwb_dma:dma|generic_simple_dpram:ring|altsyncram:\case_nobe_single:memory" CBX_FILE_NAME="altsyncram_lku3.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pexaria|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_mux:mux" CBX_FILE_NAME="mux_gec.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

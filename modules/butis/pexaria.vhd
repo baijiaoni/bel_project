@@ -38,6 +38,8 @@ ARCHITECTURE LogicFunction OF pexaria_e IS
    signal r_clr        : std_logic_vector(0 downto 0);   
 	signal r_button     : std_logic_vector(2 downto 0);
 	signal clr_i        : std_logic_vector(2 downto 0);
+	
+	signal test : std_logic;
 
    constant c_CNT    : natural   := 0;         -- Read Counterror, ro  0x00 
    constant c_CLR    : natural   := c_CNT +4;  -- Clear counter, wo 0x04 if set to '1', turn light off and make counterror = 0
@@ -128,13 +130,14 @@ BEGIN
 			if (r_button(0) = '0' or clr_i(0) = '1') then
 				counterror <= "0000000";
 			elsif (s_100k_rising and r_count_10m /= 19) then
-				counterror <= counterror + 1;
+				counterror <= counterror + 1; 
 			end if;
 	
 		end if;
 	end process;
 	
    clk_10m_o <= r_10m;
+
 	fake_pps_o <= r_pps;
 	aligned_o <= 'Z' when counterror= x"00000000" else '0';
 	
