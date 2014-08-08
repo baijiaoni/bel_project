@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Platform-independent core collection - blink-demo-0.1.tar.xz - Open Hardware Repository</title>
+<meta name="description" content="ChiliProject" />
+<meta name="keywords" content="issue,bug,tracker" />
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="XGkMYWcqyWvF7Ypzx9K2WRJxiKpHaNb7LzX0QoCp1IE="/>
+<link rel='shortcut icon' href='/favicon.ico?1405312613' />
+<link href="/themes/ohwr-theme/stylesheets/application.css?1404713280" media="all" rel="stylesheet" type="text/css" />
+
+<script src="/javascripts/prototype.js?1405312613" type="text/javascript"></script>
+<script src="/javascripts/effects.js?1405312613" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js?1405312613" type="text/javascript"></script>
+<script src="/javascripts/controls.js?1405312613" type="text/javascript"></script>
+<script src="/javascripts/application.js?1405312613" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+Event.observe(window, 'load', function(){ new WarnLeavingUnsaved('The current page contains unsaved text that will be lost if you leave this page.'); });
+//]]>
+</script>
+<script src="/themes/ohwr-theme/javascripts/theme.js?1404713280" type="text/javascript"></script>
+<!--[if IE 6]>
+    <style type="text/css">
+      * html body{ width: expression( document.documentElement.clientWidth < 900 ? '900px' : '100%' ); }
+      body {behavior: url(/stylesheets/csshover.htc?1405312613);}
+    </style>
+<![endif]-->
+
+<!-- page specific tags -->
+    <link href="/stylesheets/scm.css?1405312613" media="screen" rel="stylesheet" type="text/css" /></head>
+<body class="theme-Ohwr-theme controller-attachments action-show environment-production">
+<div id="wrapper">
+<div id="wrapper2">
+<div id="top-menu">
+    <div id="account">
+        <ul><li><a href="/login" class="login">Sign in</a></li>
+<li><a href="/account/register" class="register">Register</a></li></ul>    </div>
+    
+    <ul><li><a href="/" class="home">Home</a></li>
+<li><a href="/projects" class="projects">Projects</a></li>
+<li><a href="/licenses" class="licenses">Licenses</a></li>
+<li><a href="/companies" class="companies">Companies</a></li>
+<li><a href="http://www.ohwr.org/projects/ohr-support/wiki" class="help">Help</a></li></ul></div>
+
+<div id="header">
+    
+    <div id="quick-search">
+        <form action="/search/index/general-cores" method="get">
+        
+        <label for='q'>
+          <a href="/search/index/general-cores" accesskey="4">Search</a>:
+        </label>
+        <input accesskey="f" class="small" id="q" name="q" size="20" type="text" />
+        </form>
+        
+    </div>
+    
+
+    <h1><a href="/projects/hdl-core-lib?jump=attachments" class="root">HDL Core Lib</a> &#187; Platform-independent core collection</h1>
+
+    
+    <div id="main-menu">
+        <ul><li><a href="/projects/general-cores" class="overview">Overview</a></li>
+<li><a href="/projects/general-cores/wiki" class="wiki">Wiki</a></li>
+<li><a href="/projects/general-cores/activity" class="activity">Activity</a></li>
+<li><a href="/mailing_list/show?project_id=general-cores" class="mailing-list">Mailing List</a></li>
+<li><a href="/projects/general-cores/issues" class="issues">Issues</a></li>
+<li><a href="/projects/general-cores/news" class="news">News</a></li>
+<li><a href="/projects/general-cores/documents" class="documents">Documents</a></li>
+<li><a href="/projects/general-cores/files" class="files">Files</a></li>
+<li><a href="/projects/general-cores/repository" class="repository">Repository</a></li></ul>
+    </div>
+    
+</div>
+
+<div class="nosidebar" id="main">
+    <div id="sidebar">
+        
+        
+    </div>
+
+    <div id="content">
+				
+        <h2>blink-demo-0.1.tar.xz</h2>
+
+<div class="attachments">
+<p>LED blink firmware for LM32 on Pexaria2a - 
+   <span class="author"><a href="/users/217">Wesley W. Terpstra</a>, 2012-05-22 16:38</span></p>
+<p><a href="/attachments/download/1309/blink-demo-0.1.tar.xz">Download</a>   <span class="size">(4.1 kB)</span></p>
+
+</div>
+&nbsp;
+<div class="autoscroll">
+<table class="filecontent syntaxhl">
+<tbody>
+
+
+<tr><th class="line-num" id="L1"><a href="#L1">1</a></th><td class="line-code"><pre>7zXZ   ִF  !     t/O (] 1         aE W!8 3Nٻs  o B nJ B*^&gt;4&gt;VfcLUz3RyÃU?/Oq&gt;˗Ov[bf(x-n    .&amp; wH=r)Ҩ ӤƘҜZWg
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L2"><a href="#L2">2</a></th><td class="line-code"><pre> gJvN1 ` jP    I        gnݒQWU&quot;n*p!~1hf3U ֙*LS~͚@h$  &quot;T  VB)  *$V` )!(JގGj}h���y8 =ԒzkgO_P|\'  Oa27_\| $ I јG[s  L ̍  Aח 1Gׁ϶=Q_l%vwK  \D  F]
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L3"><a href="#L3">3</a></th><td class="line-code"><pre> Aj0
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L4"><a href="#L4">4</a></th><td class="line-code"><pre>`BŞcgB E]w&quot;o8Z q Nf
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L5"><a href="#L5">5</a></th><td class="line-code"><pre>F&quot;J?]=fS!YN A.  nM^ 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L6"><a href="#L6">6</a></th><td class="line-code"><pre>EhL]sX\[%s_ f
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L7"><a href="#L7">7</a></th><td class="line-code"><pre>T~     R~ĭk/]b  7B8 t4v V@K  *0;[d&lt;J+` I|Ue !J  2`aRK]dRST#u MĨ|L  Q  O u3 OTtKL  2o 8Rwm e)=  e sn Ō!n0T߯Ϛ=2@
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L8"><a href="#L8">8</a></th><td class="line-code"><pre>0s =r  N   Rg_YJ?] b 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L9"><a href="#L9">9</a></th><td class="line-code"><pre>U4M6޴~ -0 } [u調v
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L10"><a href="#L10">10</a></th><td class="line-code"><pre> x&lt; &quot;/ LY&amp;        ( Ct bSst ePٯ'9 bbhRmaвMkcJPP(5
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L11"><a href="#L11">11</a></th><td class="line-code"><pre>&gt;ҔHNe]Tw-Y   e6. # 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L12"><a href="#L12">12</a></th><td class="line-code"><pre>LX  NcU  mH6 05 W@ PeIain  =3txd% Y;,X  օ~߯U: &gt;dܑ]I            $yg$$~R* T+ H!A         ׵ˡ hJ|@އ/Q ^ +}߲3?H7Z;C0{t!5h NPV{  9 U~o         .D O / -jn$[}&quot;   z=&gt;| yXKzCh imǺ](QT6_&lt;7 L?O-כ A5D^{C묏8 ~!Cb
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L13"><a href="#L13">13</a></th><td class="line-code"><pre>q* N~V P  eʒ&lt;  q r=8w宄L4Z{ U ZƂ  ,  8So (ւw#T  wD &gt;*+L5a 6Y _V(5+|| ݼ[Q,/bvr: &lt; [骙
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L14"><a href="#L14">14</a></th><td class="line-code"><pre> 5&amp;
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L15"><a href="#L15">15</a></th><td class="line-code"><pre> Y.V ݖ2 j y9B}qc$m {+^C%c+w-N  ` Sdxm] | {+:d?L&gt; z
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L16"><a href="#L16">16</a></th><td class="line-code"><pre>mhfBHXTqT y?Q.Mcx Pv}nm/'h&gt;Vpom  W~9zu  HQwtM5  4 2  y _`Wr&lt;?RפF# l}} C4YvӮY&amp;.u [ mU kO) 0ܴ  SN, qDYʐ, Vt' FjיHv6t__Gna K|[i1z ou|Q$ @} jE( d .
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L17"><a href="#L17">17</a></th><td class="line-code"><pre>T &quot; [Z`)߶:® m !23 d}{ ]TFGcs pts/)]. X{Ǫ'  &amp;ju :aB  76 cp/ od-k҈ 1 PuDj [nX 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L18"><a href="#L18">18</a></th><td class="line-code"><pre>+_oە~- 4 |8 4L Dn y| A !YHq   bK'mg dӿ c_8Q:s)= Sk  J!Ex* ZX
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L19"><a href="#L19">19</a></th><td class="line-code"><pre>;8 |4 q  3ʗ FA
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L20"><a href="#L20">20</a></th><td class="line-code"><pre> n Y } F?iwC  [? &amp;؜&amp;Ɗ { [T_Mt;/ȩ&gt; ὑe4\ % &gt; ' :ݏ ? =Gg GC vM xw&lt;5역~,H{f  v $7G ՝79FKaC| =Q&gt; 5IG *t VI R9 2'$R ; | KӏPk{ I
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L21"><a href="#L21">21</a></th><td class="line-code"><pre>8Q q8'&lt;? 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L22"><a href="#L22">22</a></th><td class="line-code"><pre>M 3 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L23"><a href="#L23">23</a></th><td class="line-code"><pre>/ &amp;M*2 [E,S{VƊI[  lڨ&lt;6*M@.%wtY  nx4) !zİ  \H;  S˧&gt;C (4:-  6C  \OP 3bb($s&gt; YI i#A;
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L24"><a href="#L24">24</a></th><td class="line-code"><pre>  tZ} F+=ysNZNB|$6{i!] b j- AC7' A/e|?r$ z4=r;BS   ?GG]
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L25"><a href="#L25">25</a></th><td class="line-code"><pre>NpNT r !TN S?( h\ۥxtFDӥW D5~^[ ґJxߌ~&gt;
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L26"><a href="#L26">26</a></th><td class="line-code"><pre>~}Ide ~Y .EGI    #NCFc!Wjou8u* -/2T 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L27"><a href="#L27">27</a></th><td class="line-code"><pre>g{3C !
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L28"><a href="#L28">28</a></th><td class="line-code"><pre> WC శ%˨0e ˑU %4T! ( 2 \Fg        `j О
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L29"><a href="#L29">29</a></th><td class="line-code"><pre>T4ӆq kbM2 SS¤ Qqar8_K ( 1LK    F /Yϣ}s  az5 ੊ߜf_g   7J;  9ܤC  ñU: .Or, SMkfuj s c5Z=gD'ңϯsK(Hl||C  a !K8    1z  &lt;x0B   L2&lt;~B ЂZ5X d E} gKP9o J|G O&lt;? &quot;ݻ'uH~         X H.t=z:8b N  Qʢ  [ xzf=Ԓ  'm ۅ          |W@ Lp+  ;3@nЂBrH
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L30"><a href="#L30">30</a></th><td class="line-code"><pre>kx) y܅  ަ*~gL 2 }HSO1? M鬹䐡ݜp@*PBG AI k{  Ȳܷ#k 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L31"><a href="#L31">31</a></th><td class="line-code"><pre>+) k#SԭCw'T *\a Y  d6 ZδX p)rf-{I ~=w JQ| sY pcˌhʉ Ґ b ׁ^mE^{ 0Dz ,﷩        ruIљ  F\@ ɢ
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L32"><a href="#L32">32</a></th><td class="line-code"><pre>x  o 7a ^ rljjuH v 64ۄwLPtɢ+;nC='?]t-o m F N +:̷yX9̡_1 rGDMlNØٕ{  cM&quot;/ ʯ    ЩьO~y'] ɕ; t \( ~Y Chc\  dtIV Q͎) _W2] ~;C ߪaCyed՚AzQ[ βLnfKeG4        9cOyFv w\O {]]J  ;+v
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L33"><a href="#L33">33</a></th><td class="line-code"><pre>g R %Aaм 9   S  ݍ*     DהּYaI? ltE 0F6/tp`4U Ip l  kzv 
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L34"><a href="#L34">34</a></th><td class="line-code"><pre>lX
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L35"><a href="#L35">35</a></th><td class="line-code"><pre>oGM^@=eA*WbmsB=e|pFlx8_ M        + l,񟁙=M}p?ap Y踪L 5WN T }eb/             Ċ | &quot; uټ6A K [))7aZM1x /:K2Ckh,$v
+</pre></td></tr>
+
+
+<tr><th class="line-num" id="L36"><a href="#L36">36</a></th><td class="line-code"><pre>ɔ&lt;y_n&amp;$ 7I  bS'oǽ[J&gt;:2?@JsnS `@- ޽P:      a}ץg      YZ</pre></td></tr>
+
+
+</tbody>
+</table>
+</div>
+
+
+
+
+
+        
+				<div style="clear:both;"></div>
+    </div>
+</div>
+
+<div id="ajax-indicator" style="display:none;"><span>Loading...</span></div>
+
+<div id="footer">
+  <div class="bgl"><div class="bgr">
+    Powered by <a href="https://www.chiliproject.org/">ChiliProject</a>
+  </div></div>
+</div>
+</div>
+</div>
+<!-- Piwik -->
+<script type="text/javascript" src="http://piwik.ohwr.org/piwik.js"></script>
+<script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker("http://piwik.ohwr.org/piwik.php", 1);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://piwik.ohwr.org/piwik.php?idsite=1" style="border:0" alt=""/></p></noscript>
+<!-- End Piwik Tag -->
+<script type="text/javascript">if (!NREUMQ.f) { NREUMQ.f=function() {
+NREUMQ.push(["load",new Date().getTime()]);
+var e=document.createElement("script");
+e.type="text/javascript";
+e.src=(("http:"===document.location.protocol)?"http:":"https:") + "//" +
+  "js-agent.newrelic.com/nr-100.js";
+document.body.appendChild(e);
+if(NREUMQ.a)NREUMQ.a();
+};
+NREUMQ.a=window.onload;window.onload=NREUMQ.f;
+};
+NREUMQ.push(["nrfj","beacon-1.newrelic.com","a682afbce1","790800","cl4LRBQNCloGF0lWREVQBlgLBwhCEEoVX19G",0,254,new Date().getTime(),"","","","",""]);</script></body>
+</html>
