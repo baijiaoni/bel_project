@@ -47,7 +47,7 @@ int main() {
   BASE_TLU      = (unsigned int*)find_device_adr(GSI, TLU_DEVICE_ID);
   BASE_ONEWIRE  = (unsigned int*)find_device_adr(CERN, WR_1Wire);
 
- 
+ *(BASE_TLU+TLU_CLEAR/4)=0x1; 
 
   while(1)
   {
@@ -55,7 +55,7 @@ int main() {
   mprintf("-------3--------:0x%08x------------%08x\n",*(BASE_TLU+TLU_CH_SELECT/4),BASE_TLU+TLU_CH_SELECT/4); 
   count = *(BASE_TLU+TLU_CH_FILL_COUNT/4);  
   mprintf("--~~~~~~2~~~~~~~~~--:0x%x----------------%x\n",count,BASE_TLU+TLU_CH_FILL_COUNT/4); 
-  if (count == 1)
+  //if (count == 1)
   {
   mprintf("--~~~~~~~~~~~~~~~-4--\n");
  //*(BASE_TLU+TLU_CH_POP/4) = 0x1;
