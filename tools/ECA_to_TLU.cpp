@@ -7,28 +7,62 @@
 #include <cassert>
 #include <cstdio>
 #include <tlu.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include "hw-tlu.h"
 
 using namespace GSI_ECA;
 using namespace GSI_TLU;
+
+Device device;
 std::vector<TLU> tlus;
+sem_t s_tlu_ready;
+pthread_t send_pkg;
+address_t EM_base_address;
 
+//etherbone master transfer package to DM or RN
+void *EM_pkg (void * arg)
+  {
+    uint64_t time0 = 0;
+    uint64_t time1 = 0;
+    //get timestamp from TLU
+    if(device.read(tlus[0].address + TLU_CH_TIME1, EB_BIG_ENDIAN|EB_DATA32, &time0)!= EB_OK)
+      printf("1 IO configuration failed.\n");
+    if(device.read(tlus[0].address + TLU_CH_TIME0, EB_BIG_ENDIAN|EB_DATA32, &time1)!= EB_OK)
+      printf("1 IO configuration failed.\n");
+    printf("EM thread: get timestamp of zero-crossing point from TLU:0x%08x%08x\n",time0,time1);
+    //Etherbone master send timesatmp to another RN
+    if(device.write(EM_base_address + 0xCe0000, EB_BIG_ENDIAN|EB_DATA32, time0)!= EB_OK)
+      printf("3 IO configuration failed.\n");
+   // if(device.write(EM_base_address + 0xC00014, EB_BIG_ENDIAN|EB_DATA32, 0x0)!= EB_OK)
+    if(device.write(EM_base_address + 0xCe0004, EB_BIG_ENDIAN|EB_DATA32, time1)!= EB_OK)
+      printf("7 IO configuration failed.\n");
+    if(device.write(EM_base_address+0x04, EB_BIG_ENDIAN|EB_DATA32, 0x0001)!= EB_OK)
+      printf("8 IO configuration failed.\n");
+    return ((void *)0);
 
+  }
+
+//Trigger TLU get timestamp of zero-crossing point of rf signal
 struct MyHandler : public Handler {
   ActionQueue* aq;
   ECA* eca;
+  int tmp;
 
   status_t write(address_t address, width_t width, data_t data) {
     ActionEntry entry;
     aq->refresh();
     aq->pop(entry);
    if(entry.tag == 0x1){
-    printf("------1---------Action: 0x%"PRIx64" 0x%"PRIx64" 0x%"PRIx32" 0x%"PRIx32" %s\n",
+    printf("ECA Action: 0x%"PRIx64" 0x%"PRIx64" 0x%"PRIx32" 0x%"PRIx32" %s\n",
       entry.event, entry.param, entry.tag, entry.tef,
       eca->date(entry.time).c_str());
-    printf("***************2*************8\n");
     tlus[0].listen(1, true, true, 8); /* Listen channel 1 =>1MHz+1Hz*/
-    printf("***************3*************8\n");
     fflush(stdout);
+  if((tmp = pthread_create(&send_pkg, NULL, &EM_pkg, NULL))!= 0)
+  {
+    printf("the Etherbone master produce pkg thread is error\n");
+  }
 
     }
     return EB_OK;
@@ -47,7 +81,6 @@ struct sdb_device mydevice = {
 
 int main(int argc, const char** argv) {
   Socket socket;
-  Device device;
   MyHandler handler;
   status_t status;
 
@@ -65,6 +98,45 @@ int main(int argc, const char** argv) {
   eb_data_t data = 0x0;
   if(status = device.write(ioconf, EB_BIG_ENDIAN|EB_DATA32, data)!= EB_OK)
   printf("IO configuration failed.\n");
+
+  /* Find the Etherbone master */
+  std::vector<sdb_device> Etherbone_master;
+  device.sdb_find_by_identity(0x651, 0x00000815, Etherbone_master);
+  assert (Etherbone_master.size() == 1);
+  EM_base_address = Etherbone_master[0].sdb_component.addr_first;
+  printf("etherbone master base address = %x;\n",EM_base_address);
+  //Etherbone master configuration
+  //configure source mac address  dev/wbm0
+  if(status = device.write(EM_base_address+0x00, EB_BIG_ENDIAN|EB_DATA32, 0x00267b00)!= EB_OK)
+  printf("1 IO configuration failed.\n");
+  if(status = device.write(EM_base_address+0x10, EB_BIG_ENDIAN|EB_DATA32, 0x0407)!= EB_OK)
+  printf("2 IO configuration failed.\n");
+  //configure source ip address
+  if(status = device.write(EM_base_address+0x14, EB_BIG_ENDIAN|EB_DATA32, 0xC0A80107)!= EB_OK)
+  printf("3 IO configuration failed.\n");
+  //configure source port
+  if(status = device.write(EM_base_address+0x18, EB_BIG_ENDIAN|EB_DATA32, 0x0000EBD1)!= EB_OK)
+  printf("4 IO configuration failed.\n");
+  //configure target mac address dev/ttyUSB0
+  if(status = device.write(EM_base_address+0x1C, EB_BIG_ENDIAN|EB_DATA32, 0x00267b00)!= EB_OK)
+  printf("IO configuration failed.\n");
+  if(status = device.write(EM_base_address+0x20, EB_BIG_ENDIAN|EB_DATA32, 0x0418)!= EB_OK)
+  printf("6 IO configuration failed.\n");
+  //configure target ip address
+  if(status = device.write(EM_base_address+0x24, EB_BIG_ENDIAN|EB_DATA32, 0xC0A80118)!= EB_OK)
+  printf("7 IO configuration failed.\n");
+  //configure target port
+  if(status = device.write(EM_base_address+0x28, EB_BIG_ENDIAN|EB_DATA32, 0x0000EBD0)!= EB_OK)
+  printf("8 IO configuration failed.\n");
+  //configure packet length
+  if(status = device.write(EM_base_address+0x2C, EB_BIG_ENDIAN|EB_DATA32, 0x50)!= EB_OK)
+  printf("9 IO configuration failed.\n");
+  //configure target module
+  if(status = device.write(EM_base_address+0x30, EB_BIG_ENDIAN|EB_DATA32, 0xe0000)!= EB_OK)
+  printf("10 IO configuration failed.\n");
+
+
+
 
  /* Find the TLU */
 
@@ -133,7 +205,7 @@ int main(int argc, const char** argv) {
   uint64_t start = eca.time + 250000000;
   //simulate a timing event to trigger TLU work
   //EventEntry: event param tef time
-//  eca.streams[0].send(EventEntry(0x1111111100000000, 0, 0, start));
+  eca.streams[0].send(EventEntry(0x1111111100000000, 0, 0, start));
 
   /* Wait forever, pumping out the actions as they arrive */
   while (true) socket.run();
