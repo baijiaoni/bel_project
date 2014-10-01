@@ -17,6 +17,7 @@
 #define SHARED __attribute__((section(".shared")))
 uint32_t SHARED time0 =  0xdeadbeef;
 uint32_t SHARED time1 =  0xbabe;
+uint32_t SHARED sub =  0x0;
 
 volatile unsigned int* BASE_TLU;
 volatile unsigned int* BASE_ONEWIRE;
@@ -50,11 +51,16 @@ int main() {
   //BASE_TLU      = (unsigned int*)find_device_adr(GSI, TLU_DEVICE_ID);
   //*(BASE_TLU+TLU_CLEAR/4)=0x1;
 
+
   while(1)
   {
-  mprintf("-------9--------:0x%x------------%x\n",time0,time1);
-  time_SIS18 = time0;
-  time_SIS18 = ((time_SIS18<<32) & 0xffffffff00000000)|time1;
+  time_SIS18 = time1;
+  time_SIS18 <<= 32;
+  time_SIS18 |= time0;
+  time_SIS18 <<= 3;
+  time_SIS18 |= sub;
+  mprintf("-------9--------:0x%x------%x------%x\n",&time0,&time1,&sub);
+  mprintf("-------9--------:0x%x------%x------%x\n",time0,time1,sub);
   mprintf("-------5--------:0x%08x%08x\n",time_SIS18,time_SIS18<<32); 
   mprintf("-------9--------:0x%x\n",&time_SIS18);
   }

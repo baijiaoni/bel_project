@@ -25,17 +25,22 @@ void *EM_pkg (void * arg)
   {
     uint64_t time0 = 0;
     uint64_t time1 = 0;
+    uint64_t  sub = 0;
     //get timestamp from TLU
-    if(device.read(tlus[0].address + TLU_CH_TIME1, EB_BIG_ENDIAN|EB_DATA32, &time0)!= EB_OK)
+    if(device.read(tlus[0].address + TLU_CH_TIME1, EB_BIG_ENDIAN|EB_DATA32, &time1)!= EB_OK)
       printf("1 IO configuration failed.\n");
-    if(device.read(tlus[0].address + TLU_CH_TIME0, EB_BIG_ENDIAN|EB_DATA32, &time1)!= EB_OK)
+    if(device.read(tlus[0].address + TLU_CH_TIME0, EB_BIG_ENDIAN|EB_DATA32, &time0)!= EB_OK)
       printf("1 IO configuration failed.\n");
-    printf("EM thread: get timestamp of zero-crossing point from TLU:0x%08x%08x\n",time0,time1);
+    if(device.read(tlus[0].address + TLU_CH_SUB, EB_BIG_ENDIAN|EB_DATA32, &sub)!= EB_OK)
+      printf("1 IO configuration failed.\n");
+    printf("EM thread: get timestamp of zero-crossing point from TLU:0x%08x%08x%08x\n",time1,time0,sub);
     //Etherbone master send timesatmp to another RN
     if(device.write(EM_base_address + 0xCe0000, EB_BIG_ENDIAN|EB_DATA32, time0)!= EB_OK)
       printf("3 IO configuration failed.\n");
    // if(device.write(EM_base_address + 0xC00014, EB_BIG_ENDIAN|EB_DATA32, 0x0)!= EB_OK)
     if(device.write(EM_base_address + 0xCe0004, EB_BIG_ENDIAN|EB_DATA32, time1)!= EB_OK)
+      printf("7 IO configuration failed.\n");
+    if(device.write(EM_base_address + 0xCe0008, EB_BIG_ENDIAN|EB_DATA32, sub)!= EB_OK)
       printf("7 IO configuration failed.\n");
     if(device.write(EM_base_address+0x04, EB_BIG_ENDIAN|EB_DATA32, 0x0001)!= EB_OK)
       printf("8 IO configuration failed.\n");
